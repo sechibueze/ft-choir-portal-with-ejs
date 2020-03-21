@@ -406,7 +406,7 @@ router.post('/forgotpassword', async (req, res) => {
       }
       console.log('update respnse from db', response)
       // let link = `http://${req.headers.host}/api/v1/auth/resetpassword/${passwordToken}/${email}`
-      let link = `http://localhost:3000/resetpassword/${passwordToken}/${email}`
+      let link = `https://ft-choir-page/resetpassword/${passwordToken}/${email}`
       const option = {
         email: process.env.FROM_EMAIL,
         password: process.env.FROM_PASSWORD,

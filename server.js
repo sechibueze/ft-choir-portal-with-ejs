@@ -15,6 +15,7 @@ const User = require('./api/model/user')
 
 // Controllers
 const userController = require('./api/controllers/user')
+const profileImgController = require('./api/controllers/profileImage')
 // const checkAdmin = require('./middlewares/checkAdmin');
 // const adminController = require('./controllers/adminController');
 // cons t indexController = require('./middlewares/unitList');
@@ -25,7 +26,7 @@ const userController = require('./api/controllers/user')
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 // app.use(session({ secret: 'keepitsecret', saveUninitialized: false, resave: false }));
-
+app.use('/profileimage', profileImgController)
 app.use('/api/v1/auth', userController);
 
 app.use('/', (req, res) => {

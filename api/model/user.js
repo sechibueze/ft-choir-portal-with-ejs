@@ -29,6 +29,7 @@ const UserSchema = mongoose.Schema({
     type: String,
     required: true
   },
+  profileImag: { type: String, default: 'https://res.cloudinary.com/sechibueze/image/upload/v1584686868/sample.jpg' },
   isVerified: { type: Boolean, default: false },
   isAdmin: { type: Boolean, default: false },
   isGroupAdmin: { type: Boolean, default: false },
