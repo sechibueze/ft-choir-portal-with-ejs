@@ -9,7 +9,7 @@ dotenv.config();
 app.use(cors());
 InitiateMongoServer();
 // dotenv.config();
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 8000;
 
 const User = require('./api/model/user')
 
@@ -31,7 +31,7 @@ app.use('/api/v1/auth', userController);
 app.use('/', (req, res) => {
 
   res.json({
-    message: 'FTC2020 is running'
+    message: 'FTC2020 is running fhf'
   })
 });
 

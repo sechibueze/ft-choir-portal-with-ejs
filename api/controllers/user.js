@@ -375,46 +375,171 @@ router.patch('/user/:userId/:section', (req, res) => {
 });
 
 
-function sendEmail(user, req, res) {
+// Forgot Password
+router.post('/forgotpassword', async (req, res) => {
+  const { email } = req.body;
 
-  console.log('SendEmail function called')
-  token = user.generateVerificationToken();
+  User.findOne({ email }, (err, user) => {
+    if (err) {
 
-  // Save the verification token
-  token.save(function (err) {
-    if (err) return res.status(500).json({ status: false, message: 'could not save token' });
+      return res.json({
+        status: false,
+        message: 'Error: server error'
+      })
+    }
+    console.log('User to reset', user)
+    if (!user) {
+      return res.json({
+        status: false,
+        message: 'User not found'
+      })
+    }
 
-    let link = "http://" + req.headers.host + "/api/v1/auth/verify/" + token.token;
+    const passwordToken = crypto.randomBytes(20).toString('hex');
+    User.findOneAndUpdate({ email }, { passwordResetToken: passwordToken }, async (err, response) => {
+      // console.log('password token', passwordToken)
+      if (err) {
+        return res.json({
+          status: false,
+          message: `Could not update user`
+        })
+      }
+      console.log('update respnse from db', response)
+      // let link = `http://${req.headers.host}/api/v1/auth/resetpassword/${passwordToken}/${email}`
+      let link = `http://localhost:3000/resetpassword/${passwordToken}/${email}`
+      const option = {
+        email: process.env.FROM_EMAIL,
+        password: process.env.FROM_PASSWORD,
+        subject: 'Forgot Password',
+        message: `
+      <b> Please click the link to reset password </b> ${ link}
+      `
+      }
+      console.log('updated data', user.passwordResetToken)
+      // send mail
+      const mailStatus = await sendEmail(user, option)
 
-    const mailOptions = {
-      to: user.email,
-      from: process.env.FROM_EMAIL,
-      subject: 'Account Verification Token',
-      text: `Hi ${user.firstname} \n 
-                  Please click on the following link ${link} to verify your account. \n\n 
-                  If you did not request this, please ignore this email.\n`,
-    };
+      if (mailStatus) {
+        res.json({
+          status: true,
+          message: `A password reset mail has been sent`
+        })
+      } else {
+        res.json({
+          status: false,
+          message: `Email not sent for password resett`
+        })
+      }
+    })
 
-    const transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-        user: process.env.FROM_EMAIL,
-        pass: process.env.PASSWORD
+    // user.generatePasswordReset()
+
+
+    // console.log('user to change password', user)
+
+
+  })
+})
+
+router.post('/resetpassword', async (req, res) => {
+  // get passwordResetToken from query
+  // email & password from form
+  let { email, password, passwordResetToken } = req.body;
+
+  bcrypt.genSalt(10, function (err, salt) {
+    if (err) return next(err);
+
+    bcrypt.hash(password, salt, async function (err, hash) {
+      if (err) return next(err);
+
+      const resetUser = await User.findOneAndUpdate({ email, passwordResetToken }, { password: hash }, { new: true })
+      if (!resetUser) {
+        res.json({
+          status: false,
+          message: 'Failed to reset password'
+        })
+      } else {
+        res.json({
+          status: true,
+          message: 'Success in reset password'
+        })
       }
     });
-
-    transporter.sendMail(mailOptions, function (err, info) {
-      if (err) return res.status(500).json({ status: false, message: 'Mail not sent' });
-
-      res.json({
-        status: true,
-        message: `A verification code has been sent to ${user.email}`
-      });
-    });
-
-
   });
 
+})
+async function sendEmail(user, option, req, res) {
+
+
+  // create reusable transporter object using the default SMTP transport
+  let transporter = nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    port: 587,
+    secure: false, // true for 465, false for other ports
+    auth: {
+      user: option.email, // generated ethereal user
+      pass: option.password // generated ethereal password
+    }
+  });
+
+  // send mail with defined transport object
+  let info = await transporter.sendMail({
+    from: option.email, // sender address
+    to: user.email, // list of receivers
+    subject: option.subject, // Subject line
+    // text: "Hello world?", // plain text body
+    html: option.message // html body
+  });
+
+  return info.messageId || false;
+
+  // console.log("Message sent: %s", info.messageId);
+  // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
+
 }
+
+
+
+// function sendEmail(user, req, res) {
+
+//   console.log('SendEmail function called')
+//   token = user.generateVerificationToken();
+
+//   // Save the verification token
+//   token.save(function (err) {
+//     if (err) return res.status(500).json({ status: false, message: 'could not save token' });
+
+//     let link = "http://" + req.headers.host + "/api/v1/auth/verify/" + token.token;
+
+//     const mailOptions = {
+//       to: user.email,
+//       from: process.env.FROM_EMAIL,
+//       subject: 'Account Verification Token',
+//       text: `Hi ${user.firstname} \n 
+//                   Please click on the following link ${link} to verify your account. \n\n 
+//                   If you did not request this, please ignore this email.\n`,
+//     };
+
+//     const transporter = nodemailer.createTransport({
+//       service: 'gmail',
+//       auth: {
+//         user: process.env.FROM_EMAIL,
+//         pass: process.env.PASSWORD
+//       }
+//     });
+
+//     transporter.sendMail(mailOptions, function (err, info) {
+//       if (err) return res.status(500).json({ status: false, message: 'Mail not sent' });
+
+//       res.json({
+//         status: true,
+//         message: `A verification code has been sent to ${user.email}`
+//       });
+//     });
+
+
+//   });
+
+// }
 
 module.exports = router;
