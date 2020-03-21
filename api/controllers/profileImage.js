@@ -24,11 +24,11 @@ router.post('/', parser.single("profileImg"), (req, res) => {
   const image = {};
   image.url = req.file.url;
   image.id = req.file.public_id;
-  User.findOneAndUpdate({ id: req.body.id }, { profileImag: image.url }, { new: true }, (err, updUser) => {
+  User.findOneAndUpdate({ _id: req.body.id }, { profileImag: image.url }, { new: true }, (err, updUser) => {
     console.log('updUser', updUser)
     if (err) return res.json({ status: false, message: 'Not updated', data: err })
 
-    return res.json({ status: true, message: 'Success updated' })
+    return res.json({ status: true, message: 'Success updated', data: updUser })
   })
 });
 
