@@ -395,8 +395,10 @@ router.post('/forgotpassword', async (req, res) => {
       })
     }
 
+    console.log('updated data::before update', user.passwordResetToken)
+
     const passwordToken = crypto.randomBytes(20).toString('hex');
-    User.findOneAndUpdate({ email }, { passwordResetToken: passwordToken }, { new: true }, async (err, response) => {
+    User.findOneAndUpdate({ email: user.email }, { passwordResetToken: passwordToken }, { new: true }, async (err, newUser) => {
       // console.log('password token', passwordToken)
       if (err) {
         return res.json({
@@ -404,9 +406,9 @@ router.post('/forgotpassword', async (req, res) => {
           message: `Could not update user`
         })
       }
-      console.log('update respnse from db', response)
+      console.log('update respnse from db', newUser)
       // let link = `http://${req.headers.host}/api/v1/auth/resetpassword/${passwordToken}/${email}`
-      let link = `https://ft-choir-page/resetpassword/${passwordToken}/${email}`
+      let link = `https://ftc-ui.netlify.com/resetpassword/${passwordToken}/${email}`
       const option = {
         email: process.env.FROM_EMAIL,
         password: process.env.FROM_PASSWORD,
@@ -415,9 +417,9 @@ router.post('/forgotpassword', async (req, res) => {
       <b> Please click the link to reset password </b> ${ link}
       `
       }
-      console.log('updated data', user.passwordResetToken)
+      console.log('updated data', newUser.passwordResetToken)
       // send mail
-      const mailStatus = await sendEmail(user, option)
+      const mailStatus = await sendEmail(newUser, option)
 
       if (mailStatus) {
         res.json({
@@ -474,8 +476,8 @@ async function sendEmail(user, option, req, res) {
   // create reusable transporter object using the default SMTP transport
   let transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
-    port: 587,
-    secure: false, // true for 465, false for other ports
+    port: 465,
+    secure: true, // true for 465, false for other ports 587
     auth: {
       user: option.email, // generated ethereal user
       pass: option.password // generated ethereal password
