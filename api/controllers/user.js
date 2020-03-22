@@ -200,7 +200,7 @@ router.post(
           res.status(200).json({
             status: true,
             message: 'login - data complete ',
-            email,
+            user,
             token
           });
         }
@@ -396,7 +396,7 @@ router.post('/forgotpassword', async (req, res) => {
     }
 
     const passwordToken = crypto.randomBytes(20).toString('hex');
-    User.findOneAndUpdate({ email }, { passwordResetToken: passwordToken }, async (err, response) => {
+    User.findOneAndUpdate({ email }, { passwordResetToken: passwordToken }, { new: true }, async (err, response) => {
       // console.log('password token', passwordToken)
       if (err) {
         return res.json({
