@@ -133,7 +133,7 @@ const UserSchema = mongoose.Schema({
   choir_roles: {
     membership_status: {
       type: String,
-      default: "member",
+      default: "Member",
       enum: ['Member', 'Ordained worker', 'Pastorate']
     },
     leadership_status: {
@@ -149,7 +149,7 @@ const UserSchema = mongoose.Schema({
   church_info: {
     wsf_status: {
       type: String,
-      default: "member",
+      default: "Member",
       enum: ['Home provider', 'Member', 'District coordinator']
     },
     new_birth_year: {

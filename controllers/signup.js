@@ -64,8 +64,6 @@ router.post("/", signupValidations, async (req, res) => {
       }
       return res.render("signup", { data })
 
-
-
     }
 
     user = new User({
