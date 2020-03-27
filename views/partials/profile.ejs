@@ -1,0 +1,295 @@
+<div class="container mb-4">
+  <div class="card">
+    <div class="card-header">
+      <h3>Basic Information</h3>
+    </div>
+
+    <div class="card-body">
+      <div class="row mb-3">
+        <div class="col-md-5">
+        </div>
+        <div class="col-md-2">
+          <img style="width: 30px; height: 30px; border-radius: 50%; text-align: center; margin: 15px;"
+            src="<%= data.user.profileImage %>" alt="<%= data.user.firstname %>-Profile Image" />
+        </div>
+        <div class="col-md-5">
+          <a href="/dashboard?action=update-profile-image&id=<%= data.user._id %>"> Edit Image </a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <strong>Unit ID </strong>
+          <p> <%= data.user.unit_id || "" %></p>
+        </div>
+        <div class="col-md-3">
+          <strong>Title </strong>
+          <p> <%= data.user.title || "" %></p>
+        </div>
+        <div class="col-md-3">
+          <strong>Firstname </strong>
+          <p> <%= data.user.firstname %></p>
+        </div>
+        <div class="col-md-3">
+          <strong>Lastname </strong>
+          <p> <%= data.user.lastname %></p>
+        </div>
+
+        <!-- <div class="col-md-3">
+          <strong>Firstname </strong>
+          <p> <%= data.user.firstname %></p>
+        </div> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container mb-4">
+  <div class="card">
+    <div class="card-header">
+      <h3>General Information</h3>
+    </div>
+
+    <div class="card-body">
+
+
+      <div class="row">
+        <div class="col-md-3">
+          <strong>Group </strong>
+          <p> <%= data.user.general.group || "" %></p>
+        </div>
+        <div class="col-md-3">
+          <strong>Vocal Part </strong>
+          <p> <%= data.user.general.vocal_part || "" %></p>
+        </div>
+        <div class="col-md-3">
+          <strong>Rehearsal Location </strong>
+          <p> <%= data.user.general.rehearsal_location || "" %></p>
+        </div>
+        <div class="col-md-3">
+          <strong>Gender </strong>
+          <p> <%= data.user.general.gender || "" %></p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container mb-4">
+  <div class="card">
+    <div class="card-header">
+      <h3>Personal Information</h3>
+    </div>
+
+    <div class="card-body">
+
+      <div class="row">
+        <div class="col-md-3">
+          <strong>Phone number </strong>
+          <p> <%= data.user.personal.phone || "" %></p>
+        </div>
+        <div class="col-md-3">
+          <strong>Whatsapp Phone </strong>
+          <p> <%= data.user.personal.whatsapp_phone || "" %></p>
+        </div>
+        <div class="col-md-3">
+          <strong>Contact Address </strong>
+          <p> <%= data.user.personal.contact_address || "" %></p>
+        </div>
+        <div class="col-md-3">
+          <strong>PHA </strong>
+          <p> <%= data.user.personal.pha || "" %></p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-3">
+          <strong>Date of Birth </strong>
+          <p> <%= data.user.personal.dob || "" %></p>
+        </div>
+        <div class="col-md-3">
+          <strong>Wedding Date </strong>
+          <p> <%= data.user.personal.wed_data || "" %></p>
+        </div>
+        <div class="col-md-3">
+          <strong>Marital status </strong>
+          <p> <%= data.user.personal.marital_status || "" %></p>
+        </div>
+        <div class="col-md-3">
+          <strong>Work Status </strong>
+          <p> <%= data.user.personal.work_status || "" %></p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-3">
+          <strong>Profession </strong>
+          <p> <%= data.user.personal.profession || "" %></p>
+        </div>
+        <div class="col-md-3">
+          <strong>Employers name </strong>
+          <p> <%= data.user.personal.employer_name || "" %></p>
+        </div>
+        <div class="col-md-3">
+          <strong>Employers address </strong>
+          <p> <%= data.user.personal.employer_address || "" %></p>
+        </div>
+        <div class="col-md-3">
+          <strong> State of origin </strong>
+          <p> <%= data.user.personal.state_origin || "" %></p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-3">
+          <strong>Nationality </strong>
+          <p> <%= data.user.personal.nationality || "" %></p>
+        </div>
+        <!-- <div class="col-md-3">
+          <strong>Whatsapp Phone </strong>
+          <p> <%= data.user.general.vocal_part || "" %></p>
+        </div>
+        <div class="col-md-3">
+          <strong>Contact Address </strong>
+          <p> <%= data.user.general.rehearsal_location || "" %></p>
+        </div>
+        <div class="col-md-3">
+          <strong>PHA </strong>
+          <p> <%= data.user.general.gender || "" %></p>
+        </div>
+       -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container mb-4">
+  <div class="card">
+    <div class="card-header">
+      <h3>Next of Kins Information</h3>
+    </div>
+
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-3">
+          <strong>Name </strong>
+          <p> <%= data.user.nok.name || "" %></p>
+        </div>
+        <div class="col-md-3">
+          <strong>Address </strong>
+          <p> <%= data.user.nok.address || "" %></p>
+        </div>
+        <div class="col-md-3">
+          <strong>Phone </strong>
+          <p> <%= data.user.nok.nok_phone || "" %></p>
+        </div>
+        <div class="col-md-3">
+          <strong>Occupation </strong>
+          <p> <%= data.user.nok.occupation || "" %></p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-3">
+          <strong>Relation </strong>
+          <p> <%= data.user.nok.relation || "" %></p>
+        </div>
+        <div class="col-md-3">
+          <strong>Email </strong>
+          <p> <%= data.user.nok.email || "" %></p>
+        </div>
+        <!-- <div class="col-md-3">
+          <strong>Phone </strong>
+          <p> <%= data.user.general.rehearsal_location || "" %></p>
+        </div>
+        <div class="col-md-3">
+          <strong>Occupation </strong>
+          <p> <%= data.user.general.gender || "" %></p>
+        </div> -->
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="container mb-4">
+  <div class="card">
+    <div class="card-header">
+      <h3>Choir Roles Information</h3>
+    </div>
+
+    <div class="card-body">
+
+
+      <div class="row">
+        <div class="col-md-3">
+          <strong>Membership status </strong>
+          <p> <%= data.user.choir_roles.membership_status || "" %></p>
+        </div>
+        <div class="col-md-3">
+          <strong>Leadership status </strong>
+          <p> <%= data.user.choir_roles.leadership_status || "" %></p>
+        </div>
+        <div class="col-md-3">
+          <strong>Sub group </strong>
+          <p> <%= data.user.choir_roles.sub_group || "" %></p>
+        </div>
+        <!-- <div class="col-md-3">
+          <strong>Gender </strong>
+          <p> <%= data.user.general.gender || "" %></p>
+        </div> -->
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container mb-4">
+  <div class="card">
+    <div class="card-header">
+      <h3>Church Information</h3>
+    </div>
+    <div class="card-body">
+
+      <div class="row">
+        <div class="col-md-3">
+          <strong>WSF status </strong>
+          <p> <%= data.user.church_info.wsf_status || "" %></p>
+        </div>
+        <div class="col-md-3">
+          <strong>New birth year </strong>
+          <p> <%= data.user.church_info.new_birth_year || "" %></p>
+        </div>
+        <div class="col-md-3">
+          <strong>Holy spirit year </strong>
+          <p> <%= data.user.church_info.holy_spirit_year || "" %></p>
+        </div>
+        <div class="col-md-3">
+          <strong>LFC joined year </strong>
+          <p> <%= data.user.church_info.lfc_joined_year || "" %></p>
+        </div>
+
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <strong>Ordination year </strong>
+          <p> <%= data.user.church_info.ordination_year || "" %></p>
+        </div>
+        <div class="col-md-3">
+          <strong>Province </strong>
+          <p> <%= data.user.church_info.province || "" %></p>
+        </div>
+        <div class="col-md-3">
+          <strong>District </strong>
+          <p> <%= data.user.church_info.district || "" %></p>
+        </div>
+        <div class="col-md-3">
+          <strong>Zone</strong>
+          <p> <%= data.user.church_info.zone || "" %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<a class="btn btn-secondary" href="/dashboard?id=<%= data.user._id %>&action=edit-profile"> Edit Profile</a>

@@ -1,23 +1,26 @@
 const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
-const InitiateMongoServer = require('./api/model/db');
-const nodemailer = require("nodemailer");
-// const session = require('express-session');
+const path = require('path');
+const InitiateMongoServer = require('./model/db');
+// const nodemailer = require("nodemailer");
+const session = require('express-session');
 const app = express();
 dotenv.config();
 app.use(cors());
 InitiateMongoServer();
-// dotenv.config();
+
 const port = process.env.PORT || 8000;
 
-const User = require('./api/model/user')
+// const User = require('./model/user')
 
 // Controllers
-const userController = require('./api/controllers/user')
-const profileImgController = require('./api/controllers/profileImage')
+const signupController = require('./controllers/signup');
+const loginController = require('./controllers/login');
+const dashboardController = require("./controllers/dashboard");
+const profileImageController = require('./controllers/profileImage')
 // const checkAdmin = require('./middlewares/checkAdmin');
-// const adminController = require('./controllers/adminController');
+const adminController = require('./controllers/admin');
 // cons t indexController = require('./middlewares/unitList');
 // const unitsController = require('./controllers/unitsController');
 // const authController = require('./controllers/authController');
@@ -25,14 +28,35 @@ const profileImgController = require('./api/controllers/profileImage')
 // Set up express to parse request body
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-// app.use(session({ secret: 'keepitsecret', saveUninitialized: false, resave: false }));
-app.use('/profileimage', profileImgController)
-app.use('/api/v1/auth', userController);
+app.use(session({ secret: 'keepitsecret', saveUninitialized: false, resave: false }));
+
+// Static assests
+app.use(express.static(path.join(__dirname, '/public/')));
+// views & view engine
+app.set('views', path.join(__dirname, '/views/'));
+app.set('view engine', 'ejs');
+app.use((req, res, next) => {
+  res.locals.title = "";
+  res.locals.data = {};
+  res.locals.message = '';
+  res.locals.admin = {};
+  next();
+});
+
+app.use('/signup', signupController);
+
+app.use('/login', loginController);
+
+app.use("/dashboard", dashboardController);
+
+app.use('/profileimage', profileImageController);
+
+app.use('/admin', adminController);
 
 app.use('/', (req, res) => {
 
   res.json({
-    message: 'FTC2020 is running fhf'
+    message: 'FTC2020 is running '
   })
 });
 

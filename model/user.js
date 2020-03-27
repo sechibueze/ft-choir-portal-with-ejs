@@ -10,7 +10,7 @@ const UserSchema = mongoose.Schema({
   },
   title: {
     type: String,
-    enum: ['Mr', 'Mrs', 'Dcn']
+    enum: ['Mr', 'Mrs', 'Dcn', 'Pst']
   },
   firstname: {
     type: String,
@@ -29,8 +29,9 @@ const UserSchema = mongoose.Schema({
     type: String,
     required: true
   },
-  profileImag: { type: String, default: 'https://res.cloudinary.com/sechibueze/image/upload/v1584686868/sample.jpg' },
+  profileImage: { type: String, default: 'https://res.cloudinary.com/sechibueze/image/upload/v1584686868/sample.jpg' },
   isVerified: { type: Boolean, default: false },
+  isDeleted: { type: Boolean, default: false },
   isAdmin: { type: Boolean, default: false },
   isGroupAdmin: { type: Boolean, default: false },
   passwordResetToken: String,
@@ -41,50 +42,55 @@ const UserSchema = mongoose.Schema({
   },
   general: {
     group: {
-      type: String
+      type: String,
+      default: ""
     },
     vocal_part: {
       type: String,
-      enum: ['Alto', 'Suprano', 'tenor']
+      default: "Alto",
+      enum: ['Alto', 'Suprano', 'Tenor']
     },
     rehearsal_location: {
       type: String,
-      enum: ['Iyana', 'Isashi']
+      default: "Iyana",
+      enum: ['Iyana', 'Isashi', 'Canaanland']
     },
     gender: {
       type: String,
-      enum: ['male', 'female']
+      default: "Male",
+      enum: ['Male', 'Female']
     }
   },
   personal: {
     phone: {
-      type: String
+      type: String,
+      default: ""
     },
     whatsapp_phone: {
-      type: String
-    },
-    email: {
-      type: String
+      type: String,
+      default: ""
     },
     contact_address: {
-      type: String
+      type: String,
+      default: ""
     },
     pha: {
-      type: String
+      type: String, default: ""
     },
     dob: {
-      type: String
+      type: String, default: ""
     },
     wed_date: {
-      type: String
+      type: String, default: ""
     },
     marital_status: {
       type: String,
-      enum: ['single', 'engaged', 'married']
+
+      enum: ['Single', 'Engaged', 'Married']
     },
     work_status: {
       type: String,
-      enum: ['employed', 'self employed', 'unemployed']
+      enum: ['Employed', 'Self employed', 'Unemployed']
     },
     profession: {
       type: String
@@ -105,12 +111,13 @@ const UserSchema = mongoose.Schema({
   },
   nok: {
     name: {
-      type: String
+      type: String,
+      default: ""
     },
     address: {
       type: String
     },
-    phone: {
+    nok_phone: {
       type: String
     },
     occupation: {
@@ -126,22 +133,24 @@ const UserSchema = mongoose.Schema({
   choir_roles: {
     membership_status: {
       type: String,
-      enum: ['member', 'ordained worker', 'pastorate']
+      default: "member",
+      enum: ['Member', 'Ordained worker', 'Pastorate']
     },
     leadership_status: {
       type: String,
-      enum: ['choir master', 'part head']
+      enum: ['Choir master', 'Part head']
     },
     sub_group: {
       type: String,
-      enum: ['music team', 'praise team', 'legal team']
+      enum: ['Music team', 'Praise team', 'Legal team']
     }
 
   },
   church_info: {
     wsf_status: {
       type: String,
-      enum: ['home provider', 'member', 'district coordinator']
+      default: "member",
+      enum: ['Home provider', 'Member', 'District coordinator']
     },
     new_birth_year: {
       type: String

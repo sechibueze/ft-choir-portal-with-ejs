@@ -1,0 +1,25 @@
+<h1> Users List </h1>
+
+
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Firstname</th>
+      <th>Lastname</th>
+      <th>Email</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% data.users.forEach(function(user){ %>
+    <tr>
+      <td> <%= user.unit_id %> </td>
+      <td> <%= user.firstname %> </td>
+      <td> <%= user.lastname %> </td>
+      <td> <%= user.email %> </td>
+    </tr>
+    <%}) %>
+
+  </tbody>
+</table>

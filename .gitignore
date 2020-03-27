@@ -2,3 +2,5 @@ node_modules
 NOTE.MD
 .env
 README.md
+test.js
+sendMail.js

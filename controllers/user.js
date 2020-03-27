@@ -19,76 +19,6 @@ const auth = require('../middleware/auth');
  * @param - /signup
  * @description - User SignUp
  */
-router.post(
-  "/signup",
-  [
-    check("firstname", "Please Enter your Firstname")
-      .not()
-      .isEmpty(),
-    check("lastname", "Please Enter your Lastname")
-      .not()
-      .isEmpty(),
-    check("email", "Please enter a valid email").isEmail(),
-    check("password", "Please enter a valid password").isLength({
-      min: 6
-    })
-  ],
-  async (req, res) => {
-    const errors = validationResult(req);
-
-    if (!errors.isEmpty()) {
-      return res.status(400).json({
-        status: false,
-        error: errors.array()
-      });
-    }
-    console.log('Passed signup validations')
-    const {
-      firstname,
-      lastname,
-      email,
-      password
-    } = req.body;
-
-
-    try {
-      let user = await User.findOne({
-        email
-      });
-
-      if (user) {
-        return res.status(400).json({
-          status: false,
-          error: "User Already Exists"
-        });
-      }
-
-      user = new User({
-        firstname,
-        lastname,
-        email,
-        password
-      });
-
-      // Password will be hashed before save() if it wasnt modified
-      const user_ = await user.save();
-      // console.log('Saved use to DB', user_)
-      res.json({
-        status: true,
-        message: 'User signup successfully',
-        data: user_
-      })
-      // sendEmail(user_, req, res);
-
-    } catch (err) {
-      console.log(err.message);
-      res.status(500).json({
-        status: false,
-        error: 'Could not signup'
-      });;
-    }
-  }
-);
 
 router.get('/verify/:token', async (req, res) => {
   if (!req.params.token) {
@@ -140,80 +70,7 @@ router.get('/verify/:token', async (req, res) => {
 
 
 
-/**
- * @method - POST
- * @param - /login
- * @description - User login
- */
-router.post(
-  "/login",
-  [
-    check("email", "Please enter a valid email").isEmail(),
-    check("password", "Please enter a valid password").isLength({
-      min: 6
-    })
-  ],
-  async (req, res) => {
-    const errors = validationResult(req);
 
-    if (!errors.isEmpty()) {
-      return res.status(400).json({
-        status: false,
-        errors: errors.array()
-      });
-    }
-
-    const { email, password } = req.body;
-    try {
-      let user = await User.findOne({ email });
-      if (!user)
-        return res.status(400).json({
-          status: false,
-          error: "User Not Exist"
-        });
-
-      const isMatch = user.comparePassword(password);
-      if (!isMatch)
-        return res.status(400).json({
-          status: false,
-          error: "Incorrect Username or Password !"
-        });
-
-      // Make sure the user has been verified
-      // if (!user.isVerified) return res.status(401).json({ status: false, message: 'Your account has not been verified.' });
-
-
-      const payload = {
-        user: {
-          id: user.id
-        }
-      };
-
-      jwt.sign(
-        payload,
-        process.env.JWT_SECRET,
-        {
-          expiresIn: 3600
-        },
-        (err, token) => {
-          if (err) throw err;
-          res.status(200).json({
-            status: true,
-            message: 'login - data complete ',
-            user,
-            token
-          });
-        }
-      );
-    } catch (e) {
-      console.error(e);
-      res.status(500).json({
-        status: false,
-        error: "Server Error"
-      });
-    }
-  }
-);
 
 /**
  * @method - GET
@@ -387,8 +244,8 @@ router.post('/forgotpassword', async (req, res) => {
         message: 'Error: server error'
       })
     }
-    console.log('User to reset', user)
-    if (!user) {
+    console.log('User to reset', user._id)
+    if (!user._id) {
       return res.json({
         status: false,
         message: 'User not found'

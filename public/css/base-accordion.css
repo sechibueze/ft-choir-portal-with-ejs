@@ -1,0 +1,164 @@
+ * {
+      box-sizing: border-box;
+    }
+
+    .row::after {
+      content: "";
+      clear: both;
+      display: block;
+    }
+
+    [class*="grid-"] {
+      width: 100%;
+      margin: 8px auto;
+    }
+
+    /* For Tablets */
+    @media screen and (min-width: 560px) {
+
+
+      [class*="grid-"] {
+        float: left;
+        padding: 8px;
+        margin: 0px;
+      }
+
+      .grid-md-1 {
+        width: 8.33%;
+      }
+
+      .grid-md-2 {
+        width: 16.66%;
+      }
+
+      .grid-md-3 {
+        width: 25%;
+      }
+
+      .grid-md-4 {
+        width: 33.33%;
+      }
+
+      .grid-md-5 {
+        width: 41.66%;
+      }
+
+      .grid-md-6 {
+        width: 50%;
+      }
+
+      .grid-md-7 {
+        width: 58.33%;
+      }
+
+      .grid-md-8 {
+        width: 66.66%;
+      }
+
+      .grid-md-9 {
+        width: 75%;
+      }
+
+      .grid-md-10 {
+        width: 83.33%;
+      }
+
+      .grid-md-11 {
+        width: 91.66%;
+      }
+
+      .grid-md-12 {
+        width: 100%;
+      }
+    }
+
+    @media screen and (min-width: 760px) {
+
+      .grid-1 {
+        width: 8.33%;
+      }
+
+      .grid-2 {
+        width: 16.66%;
+      }
+
+      .grid-3 {
+        width: 25%;
+      }
+
+      .grid-4 {
+        width: 33.33%;
+      }
+
+      .grid-5 {
+        width: 41.66%;
+      }
+
+      .grid-6 {
+        width: 50%;
+      }
+
+      .grid-7 {
+        width: 58.33%;
+      }
+
+      .grid-8 {
+        width: 66.66%;
+      }
+
+      .grid-9 {
+        width: 75%;
+      }
+
+      .grid-10 {
+        width: 83.33%;
+      }
+
+      .grid-11 {
+        width: 91.66%;
+      }
+
+      .grid-12 {
+        width: 100%;
+      }
+
+    }
+
+    /* start our-solution */
+    #our-solutions ul {
+      padding: 0;
+      margin: 0;
+      text-align: left;
+      list-style: none;
+    }
+
+    #our-solutions ul h3 {
+      display: inline-block;
+      margin: 12px auto;
+
+    }
+
+    #our-solutions ul p {
+      padding: 15px;
+      text-align: justify;
+      line-height: 1.5;
+      background-color: #ddd;
+      width: 90%;
+      margin: 0px auto 10px auto;
+      /* margin-top: 0; */
+    }
+
+    #our-solutions summary {
+      background-color: #4CAF50;
+      color: #ddd;
+      padding-left: 18px;
+    }
+
+    .solution-image {
+      background-image: url(../img/our-work-solution.jpg);
+      background-size: cover;
+      background-clip: padding-box;
+      height: 300px;
+      border-radius: 9px 7px 5px;
+      box-shadow: 1px 1px 9px #ccc;
+    }
