@@ -4,4 +4,4 @@ NOTE.MD
 README.md
 test.js
 sendEmail.js
-helpers
+helpers/sendMail.js
