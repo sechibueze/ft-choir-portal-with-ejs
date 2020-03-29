@@ -1,14 +1,14 @@
 <h1> Users List </h1>
 
-
-
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
-      <th>ID</th>
+
+      <th>Unit ID</th>
       <th>Firstname</th>
       <th>Lastname</th>
       <th>Email</th>
+      <th> view </th>
     </tr>
   </thead>
   <tbody>
@@ -18,6 +18,8 @@
       <td> <%= user.firstname %> </td>
       <td> <%= user.lastname %> </td>
       <td> <%= user.email %> </td>
+      <td> <a href="/dashboard?action=view_user&id=<%= user._id %>"><i class="fa fa-eye"></i></a> </td>
+
     </tr>
     <%}) %>
 

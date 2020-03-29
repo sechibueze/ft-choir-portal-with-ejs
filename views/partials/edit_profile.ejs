@@ -1,6 +1,7 @@
 <section id="our-solutions" class="row">
-  <h2 class="section-heading">Some Solutions</h2>
+  <h2 class="section-heading" style="text-align: center;">Edit by section</h2>
   <div class="container">
+
     <div class="grid-1 grid-md-1"></div>
     <div class="grid-6 grid-md-6">
 
@@ -13,16 +14,28 @@
             <p>
 
               <form method="POST" action="/dashboard/basic/<%= data.user._id %>" name="basic">
-                <input type="text" name="unit_id" placeholder="Unit ID" required /> <br />
-                <select name="title" class="" required>
-                  <option value="Mr"> Mr</option>
-                  <option value="Mrs"> Mrs</option>
-                  <option value="Dcn"> Deacon</option>
-                  <option value="Pst"> Pastor</option>
-                </select> <br />
-                <input type="text" name="firstname" placeholder="Firstname" required /> <br />
-                <input type="text" name="lastname" placeholder="Lastname" required /> <br />
-                <button type="submit" class="btn btn-primary">Update Basic Info </button>
+                <div class="form-group">
+                  <label for="unit_id">Unit ID</label>
+                  <input type="text" name="unit_id" class="form-control" placeholder="Unit ID" required />
+                </div>
+                <div class="form-group">
+                  <label for="title">Title</label>
+                  <select name="title" class="form-control" required>
+                    <option value="Mr"> Mr</option>
+                    <option value="Mrs"> Mrs</option>
+                    <option value="Dcn"> Deacon</option>
+                    <option value="Pst"> Pastor</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="firstname">Firstname </label>
+                  <input type="text" name="firstname" class="form-control" placeholder="Firstname" required />
+                </div>
+                <div class="form-group">
+                  <label for="lastname">Lastname</label>
+                  <input type="text" name="lastname" class="form-control" placeholder="Lastname" required />
+                </div>
+                <button type="submit" class="btn btn-primary mt-4">Update Basic Info </button>
               </form>
             </p>
           </details>
@@ -34,29 +47,40 @@
             </summary>
             <p>
               <form method="POST" action="/dashboard/general/<%= data.user._id %>" name="general">
-                <input type="text" name="group" placeholder="Group" required /> <br />
-                <select name="vocal_part" class="" required>
+                <div class="form-group">
+                  <label for="group">Group</label>
+                  <input type="text" name="group" class="form-control" placeholder="Group" required />
+                </div>
+                <div class="form-group">
+                  <label for="vocal_part">Select vocal part</label>
+                  <select name="vocal_part" class="form-control" required>
+                    <option value="Alto"> Alto</option>
+                    <option value="Suprano"> Suprano</option>
+                    <option value="Tenor"> Tenor</option>
+                  </select>
+                </div>
 
-                  <option value="Alto"> Alto</option>
-                  <option value="Suprano"> Suprano</option>
-                  <option value="Tenor"> Tenor</option>
-                </select> <br />
+                <div class="form-group">
+                  <label for="rehearsal_location">Select your reheasal location</label>
+                  <select name="rehearsal_location" class="form-control" required>
+                    <option value="Iyana"> Iyana </option>
+                    <option value="Isashi"> Isashi </option>
+                    <option value="Canaanland"> Canaanland </option>
+                  </select>
+                </div>
 
-                <select name="rehearsal_location" class="" required>
 
-                  <option value="Iyana"> Iyana </option>
-                  <option value="Isashi"> Isashi </option>
-                  <option value="Canaanland"> Canaanland </option>
-                </select> <br />
 
-                <select name="gender" class="" required>
-                  <option value="Female"> Female</option>
-                  <option value="Male"> Male</option>
-                </select> <br />
+                <div class="form-group">
+                  <label for="gender"> Gender</label>
+                  <select name="gender" class="form-control" required>
+                    <option value="Female"> Female</option>
+                    <option value="Male"> Male</option>
+                  </select>
+                </div>
 
-                <!-- <input type="text" name="firstname" placeholder="Firstname" required /> <br />
-                <input type="text" name="lastname" placeholder="Lastname" required /> <br /> -->
-                <button type="submit" class="btn btn-primary">Update Basic Info </button>
+
+                <button type="submit" class="btn btn-primary mt-4">Update General Info </button>
               </form>
 
             </p>
@@ -70,60 +94,93 @@
             <p>
               <form method="POST" action="/dashboard/personal/<%= data.user._id %>" name="personal">
 
-                <input type="tel" name="phone" placeholder="Phone" required /> <br />
+                <div class="form-group">
+                  ,<label for="phone">Telephone number</label>
+                  <input type="tel" class="form-control" name="phone" placeholder="Phone" required />
+                </div>
 
-                <input type="tel" name="whatsapp_phone" placeholder="Whatsapp Phone" required /> <br />
+                <div class="form-group">
+                  <label for="whatsapp_phone">Whatsapp phone</label>
+                  <input type="tel" name="whatsapp_phone" class="form-control" placeholder="Whatsapp Phone" required />
+                </div>
 
-                <input type="text" name="contact_address" placeholder="Contact Address" required /> <br />
+                <div class="form-group">
+                  <label for="contact_address">Contact address</label>
+                  <input type="text" name="contact_address" class="form-control" placeholder="Contact Address"
+                    required />
 
-                <input type="text" name="pha" placeholder="PHA" required /> <br />
+                </div>
 
-                <input type="text" name="dob" placeholder="Date of birth" required /> <br />
+                <div class="form-group">
+                  <label for="pha">PHA</label>
+                  <input type="text" name="pha" class="form-control" placeholder="PHA" required />
+                </div>
 
-                <input type="text" name="wed_date" placeholder="Wedding Date" required /> <br />
+                <div class="form-group">
+                  <label for="dob">Date of Birth</label>
+                  <input type="text" name="dob" class="form-control" placeholder="Date of birth" required />
+                </div>
 
+                <div class="form-group">
+                  <label for="wed_date"> Wedding date</label>
+                  <input type="text" name="wed_date" class="form-control" placeholder="Wedding Date" required />
+                </div>
 
+                <div class="form-group">
+                  <label for="marital_status">Marital status</label>
+                  <select name="marital_status" class="form-control" required>
+                    <option value="Single"> Single</option>
+                    <option value="Engaged"> Engaged</option>
+                    <option value="Married"> Married</option>
+                  </select>
+                </div>
 
-                <select name="marital_status" class="" required>
-                  <option value="Single"> Single</option>
-                  <option value="Engaged"> Engaged</option>
-                  <option value="Married"> Married</option>
-                </select> <br />
+                <div class="form-group">
+                  <label for="work_status">Work status</label>
+                  <select name="work_status" class="form-control" required>
+                    <option value="Self employed"> Self Employed </option>
+                    <option value="Unemployed"> Unemployed </option>
+                    <option value="Employed"> Employed </option>
+                  </select>
+                </div>
 
-                <select name="work_status" class="" required>
+                <div class="form-group">
+                  <label for="profession">Profession</label>
+                  <input type="text" name="profession" class="form-control" placeholder="Enter profession" required />
+                  <br />
+                </div>
 
-                  <option value="Self employed"> Self Employed </option>
-                  <option value="Unemployed"> Unemployed </option>
-                  <option value="Employed"> Employed </option>
-                </select> <br />
+                <div class="form-group">
+                  <label for="employer_name">Name of your employer</label>
+                  <input type="text" name="employer_name" class="form-control" placeholder="Employer name" required />
+                </div>
 
-                <input type="text" name="profession" placeholder="Profession" required /> <br />
+                <div class="form-group">
+                  <label for="employer_address">Employer address</label>
+                  <input type="text" class="form-control" name="employer_address" placeholder="Employers Address"
+                    required />
+                </div>
 
-                <input type="text" name="employer_name" placeholder="Employer name" required /> <br />
+                <div class="form-group">
+                  <label for="state_origin"> State of origin</label>
+                  <select name="state_origin" class="form-control" required>
+                    <option value="Abia State"> Abia State </option>
+                    <option value="Ogun State"> Ogun State</option>
+                    <option value="Lagos State"> Lagos State</option>
+                    <option value="Osun State"> Osun State</option>
+                  </select>
+                </div>
 
-                <input type="text" name="employer_address" placeholder="Employers Address" required /> <br />
+                <div class="form-group">
+                  <label for="nationality"> Nationality</label>
+                  <select name="nationality" class="form-control" required>
+                    <option value="Nigerian"> Nigeria </option>
+                    <option value="Ghanian"> Ghana</option>
+                    <option value="Togolese"> Togo</option>
+                  </select>
+                </div>
 
-                <!-- <input type="text" name="firstname" placeholder="Firstname" required /> <br /> -->
-                <select name="state_origin" class="" required>
-                  <option value="Abia State"> Abia State </option>
-                  <option value="Ogun State"> Ogun State</option>
-                  <option value="Lagos State"> Lagos State</option>
-                  <option value="Osun State"> Osun State</option>
-
-                </select> <br />
-
-                <!-- <input type="text" name="firstname" placeholder="Firstname" required /> <br /> -->
-                <select name="nationality" class="" required>
-                  <option value="Nigerian"> Nigeria </option>
-                  <option value="Ghanian"> Ghana</option>
-                  <option value="Togolese"> Togo</option>
-
-
-                </select> <br />
-
-                <!-- 
-                              <input type="text" name="lastname" placeholder="Lastname" required /> <br /> -->
-                <button type="submit" class="btn btn-primary">Update Personal Info </button>
+                <button type="submit" class="btn btn-primary mt-4 mb-4">Update Personal Info </button>
               </form>
             </p>
           </details>
@@ -136,27 +193,41 @@
             <p>
               <form method="POST" action="/dashboard/nok/<%= data.user._id %>" name="nok">
 
-                <input type="text" name="name" placeholder="Name" required /> <br />
+                <div class="form-group">
+                  <label for="nok_name"> Name of next of kins</label>
+                  <input type="text" name="nok_name" class="form-control" placeholder="Enter name" required />
+                </div>
 
-                <input type="text" name="address" placeholder="Address" required /> <br />
+                <div class="form-group">
+                  <label for="nok_address">Address of next of kins</label>
+                  <input type="text" name="nok_address" class="form-control" placeholder="Address" required />
+                </div>
 
-                <input type="tel" name="nok_phone" placeholder="Phone" required /> <br />
+                <div class="form-group">
+                  <label for="nok_phone">Phone number of next of kins</label>
+                  <input type="tel" name="nok_phone" class="form-control" placeholder="Phone" required />
+                </div>
 
-                <input type="text" name="occupation" placeholder="Occupation" required /> <br />
+                <div class="form-group">
+                  <label for="occupation">Occupation of next of kins</label>
+                  <input type="text" name="nok_occupation" class="form-control" placeholder="Occupation" required />
+                </div>
 
-                <input type="email" name="email" placeholder="Email" required /> <br />
-                <select name="relation" class="" required>
+                <div class="form-group">
+                  <label for="nok_email">Email of next of kins</label>
+                  <input type="email" name="nok_email" class="form-control" placeholder="Email" required />
+                </div>
 
-                  <option value="husband"> Husband</option>
-                  <option value="Son"> Son</option>
-                  <option value="Daughter"> Daughter</option>
-                </select> <br />
+                <div class="form-group">
+                  <label for="nok_relation">Relation to next of kins</label>
+                  <select name="nok_relation" class="form-control" required>
+                    <option value="husband"> Husband</option>
+                    <option value="Son"> Son</option>
+                    <option value="Daughter"> Daughter</option>
+                  </select>
+                </div>
 
-
-
-                <!-- <input type="text" name="firstname" placeholder="Firstname" required /> <br />
-                        <input type="text" name="lastname" placeholder="Lastname" required /> <br /> -->
-                <button type="submit" class="btn btn-primary">Update Next of Kin Info </button>
+                <button type="submit" class="btn btn-primary mt-4 mb-4">Update Next of Kin Info </button>
               </form>
 
             </p>
@@ -170,34 +241,33 @@
             <p>
               <form method="POST" action="/dashboard/choir_roles/<%= data.user._id %>" name="choir_roles">
 
+                <div class="form-group">
+                  <label for="membership_status">Membership status</label>
+                  <select name="membership_status" class="form-control" required>
+                    <option value="Member"> Member</option>
+                    <option value="Ordained worker"> Oradained Worker</option>
+                    <option value="Pastorate"> Pastorate</option>
+                  </select>
+                </div>
 
-                <select name="membership_status" class="" required>
+                <div class="form-group">
+                  <label for="leadership_status">Leadership status</label>
+                  <select name="leadership_status" class="form-control" required>
+                    <option value="Choir master"> Choir master</option>
+                    <option value="Part head"> Part head </option>
+                  </select>
+                </div>
 
-                  <option value="Member"> Member</option>
-                  <option value="Ordained worker"> Oradained Worker</option>
-                  <option value="Pastorate"> Pastorate</option>
-                </select> <br />
+                <div class="form-group">
+                  <label for="sub_group"> Sub group</label>
+                  <select name="sub_group" class="form-control" required>
+                    <option value="Music team"> Music team</option>
+                    <option value="Praise team"> Praise team</option>
+                    <option value="Legal team"> Legal team</option>
+                  </select>
+                </div>
 
-                <select name="leadership_status" class="" required>
-
-                  <option value="Choir master"> Choir master</option>
-                  <option value="Part head"> Part head </option>
-
-                </select> <br />
-
-                <select name="sub_group" class="" required>
-
-                  <option value="Music team"> Music team</option>
-                  <option value="Praise team"> Praise team</option>
-                  <option value="Legal team"> Legal team</option>
-
-
-                </select> <br />
-
-
-
-
-                <button type="submit" class="btn btn-primary">Update Choir roles Info </button>
+                <button type="submit" class="btn btn-primary mt-4 mb-4">Update Choir roles Info </button>
               </form>
 
             </p>
@@ -211,29 +281,55 @@
             <p>
               <form method="POST" action="/dashboard/church_info/<%= data.user._id %>" name="church_info">
 
-                <select name="wsf_status" class="" required>
+                <div class="form-group">
+                  <label for="wsf_status">WSF status</label>
+                  <select name="wsf_status" class="form-control" required>
+                    <option value="Member"> Member</option>
+                    <option value="Home provider"> Home provider</option>
+                    <option value="District coordinator"> District coordinator</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="new_birth_year">Year of new birth</label>
+                  <input type="text" name="new_birth_year" class="form-control" placeholder="New Birth year" required />
+                </div>
 
-                  <option value="Member"> Member</option>
-                  <option value="Home provider"> Home provider</option>
-                  <option value="District coordinator"> District coordinator</option>
-                </select> <br />
+                <div class="form-group">
+                  <label for="holy_ghost_year">Year of Holy Ghost Baptism</label>
+                  <input type="text" name="holy_spirit_year" class="form-control" placeholder="Holy ghost year"
+                    required />
+                </div>
 
-                <input type="text" name="new_birth_year" placeholder="New Birth year" required /> <br />
+                <div class="form-group">
+                  <label for="lfc_joined_year">Year joined LFC</label>
+                  <input type="text" name="lfc_joined_year" class="form-control"
+                    placeholder="which year did you join LFC" required />
+                </div>
 
-                <input type="text" name="holy_spirit_year" placeholder="Holy ghost year" required /> <br />
+                <div class="form-group">
+                  <label for="ordination_year">Year of Ordination</label>
+                  <input type="text" name="ordination_year" class="form-control" placeholder="Year of Ordination"
+                    required />
+                </div>
 
-                <input type="text" name="lfc_joined_year" placeholder="Year joined LFC" required /> <br />
+                <div class="form-group">
+                  <label for="province">Province</label>
+                  <input type="text" name="province" class="form-control" placeholder="Province" required />
+                </div>
 
-                <input type="text" name="ordination_year" placeholder="Year of Ordination" required /> <br />
+                <div class="form-group">
+                  <label for="district">District</label>
+                  <input type="text" name="district" class="form-control" placeholder="District" required />
 
-                <input type="text" name="province" placeholder="Province" required /> <br />
-                <input type="text" name="district" placeholder="District" required /> <br />
-                <input type="text" name="zone" placeholder="Zone" required /> <br />
+                </div>
 
-
-
-
-                <button type="submit" class="btn btn-primary">Update Church Info </button>
+                <div class="form-group">
+                  <label for="zone">
+                    Zone
+                  </label>
+                  <input type="text" name="zone" class="form-control" placeholder="Zone" required />
+                </div>
+                <button type="submit" class="btn btn-primary mt-4 mb-4">Update Church Info </button>
               </form>
 
             </p>
@@ -250,74 +346,3 @@
   </div>
   <div class="grid-1 grid-md-1"></div>
 </section>
-
-
-<!-- <section class="ac-container">
-  <div>
-    <input id="ac-1" name="accordion-1" type="radio" checked="">
-    <label for="ac-1">Basic Information </label>
-    <article class="ac-small">
-      <form method="POST" action="/" class="col-sm-12">
-        <div class="form-group">
-          <label for="title">Title</label>
-          <input type="text" name="unit_id" required class="form-control" id="title" />
-        </div>
-
-        <div class="form-group">
-          <label for="title">Password</label>
-          <select class="custom-select" name="title" id="title" aria-label="">
-            <option selected>Choose...</option>
-            <option value="Mr">Mr</option>
-            <option value="Dcn">Dcn</option>
-            <option value="Mrs">Mrs</option>
-          </select>
-        </div>
-
-        <button type="submit" class="btn btn-primary">Update Basic Info</button>
-      </form>
-    </article>
-  </div>
-  <div>
-    <input id="ac-2" name="accordion-1" type="radio">
-    <label for="ac-2"> General Information </label>
-    <article class="ac-medium">
-      <p>Like you, I used to think the world was this great place where everybody lived by the same standards I did,
-        then some kid with a nail showed me I was living in his world, a world where chaos rules not order, a world
-        where righteousness is not rewarded. That's Cesar's world, and if you're not willing to play by his rules, then
-        you're gonna have to pay the price. </p>
-    </article>
-  </div>
-  <div>
-    <input id="ac-3" name="accordion-1" type="radio">
-    <label for="ac-3">Next of Kins </label>
-    <article class="ac-large">
-      <p>You think water moves fast? You should see ice. It moves like it has a mind. Like it knows it killed the world
-        once and got a taste for murder. After the avalanche, it took us a week to climb out. Now, I don't know exactly
-        when we turned on each other, but I know that seven of us survived the slide... and only five made it out. Now
-        we took an oath, that I'm breaking now. We said we'd say it was the snow that killed the other two, but it
-        wasn't. Nature is lethal but it doesn't hold a candle to man. </p>
-    </article>
-  </div>
-  <div>
-    <input id="ac-4" name="accordion-1" type="radio">
-    <label for="ac-4">Choir Roles Information </label>
-    <article class="ac-large">
-      <p>You see? It's curious. Ted did figure it out - time travel. And when we get back, we gonna tell everyone. How
-        it's possible, how it's done, what the dangers are. But then why fifty years in the future when the spacecraft
-        encounters a black hole does the computer call it an 'unknown entry event'? Why don't they know? If they don't
-        know, that means we never told anyone. And if we never told anyone it means we never made it back. Hence we die
-        down here. Just as a matter of deductive logic. </p>
-    </article>
-  </div>
-  <div>
-    <input id="ac-4" name="accordion-1" type="radio">
-    <label for="ac-4">Church Information </label>
-    <article class="ac-large">
-      <p>You see? It's curious. Ted did figure it out - time travel. And when we get back, we gonna tell everyone. How
-        it's possible, how it's done, what the dangers are. But then why fifty years in the future when the spacecraft
-        encounters a black hole does the computer call it an 'unknown entry event'? Why don't they know? If they don't
-        know, that means we never told anyone. And if we never told anyone it means we never made it back. Hence we die
-        down here. Just as a matter of deductive logic. </p>
-    </article>
-  </div>
-</section> -->

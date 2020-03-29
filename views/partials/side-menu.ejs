@@ -1,28 +1,31 @@
 <div class="navi">
   <ul>
-    <li class="active"><a href="#"><i class="fa fa-home" aria-hidden="true"></i><span
-          class="hidden-xs hidden-sm">Home</span></a></li>
+    <li class="active"><a href="/dashboard">
+        <i class="fa fa-home" aria-hidden="true"></i>
+        <span class="hidden-xs hidden-sm">Home</span></a>
+    </li>
 
 
     <li data-toggle="modal" data-target="#profile">
       <a href="/dashboard?action=profile&id=<%= data.user._id %>">
-        <i class="fa fa-tasks" aria-hidden="true"></i>
+        <i class="fa fa-user" aria-hidden="true"></i>
         <span class="hidden-xs hidden-sm"> Profile </span>
       </a>
     </li>
 
-    <li><a href="#"><i class="fa fa-bar-chart" aria-hidden="true"></i><span
-          class="hidden-xs hidden-sm">Manage</span></a></li>
-    <li><a href="#"><i class="fa fa-user" aria-hidden="true"></i><span
-          class="hidden-xs hidden-sm">Notification</span></a>
+    <li><a href="/dashboard?action=notifications&id=<%= data.user._id %>"><i class="fa fa-bell"
+          aria-hidden="true"></i><span class="hidden-xs hidden-sm">Notice</span></a>
     </li>
-    <hr />
     <% if(data.user.isAdmin){%>
-    <li><a href="/dashboard?action=users&id=<%= data.user._id %>"><i class="fa fa-calendar" aria-hidden="true"></i><span
+    <li><a href="/dashboard?action=users&id=<%= data.user._id %>"><i class="fa fa-users" aria-hidden="true"></i><span
           class="hidden-xs hidden-sm">Users</span></a>
     </li>
-    <li><a href="#"><i class="fa fa-cog" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Setting</span></a>
+
+    <li><a href="/admin"><i class="fa fa-key" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Admin</span></a>
     </li>
     <%}%>
+
+    <li><a href="/logout"><i class="fa fa-sign-out" aria-hidden="true"></i><span
+          class="hidden-xs hidden-sm">Logout</span></a></li>
   </ul>
 </div>

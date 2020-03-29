@@ -1,0 +1,19 @@
+<div class="container">
+
+  <div class="row">
+    <div class="col-12">
+      <form method="POST" action="/notify">
+        <h3> Create a new notification</h3>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea class="form-control" name="message" cols="10" rows="8" style="resize: none;"></textarea>
+        </div>
+        <div class="form-group">
+          <input type="hidden" class="form-control" name="source" value="<%= data.user.firstname %>" />
+        </div>
+        <button type="submit" class="btn btn-primary">Send </button>
+      </form>
+    </div>
+  </div>
+
+</div>

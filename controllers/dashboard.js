@@ -1,75 +1,117 @@
 const express = require("express");
-
 const fastcsv = require("fast-csv");
 const fs = require("fs");
 const path = require('path');
-// const convertapi = require("convertapi");
 const convertapi = require('convertapi')(process.env.CONVERTAPI_KEY);
 const router = express.Router();
 const User = require("../model/user");
+const Notification = require("../model/notification");
+const reportData = require("../helpers/reportData")
 
-// url: /dashboard
+/*
+* @route GET /dashboard
+* @descrription render the user dashboard
+* @access private
+*/
 router.get("/", (req, res) => {
+  console.log("Admin status", req.session.isAdmin)
   if (!req.session.auth) {
-    req.session.message = "Unauthenticated"
+    req.session.message = "Unauthenticated access";
     return res.redirect("/login")
   }
-  // console.log("datsboard user", req.session)
+
   console.log("Dashboard query", req.query)
   let data = {
+    error: "",
+    message: "",
     query: req.query,
     user: req.session.user
   }
   if (req.query.action === "users") {
+    //@route - /dashboard?action=users&id=1233466466
+    // @description - get all registered users
     User.find({ isDeleted: false }, (err, docs) => {
       if (err) {
+        req.session.message = "Oops! Server error";
         return res.redirect("/dashboard")
       }
-      console.log("Users List::docs", docs)
+      console.log("Users List::docs.length", docs.length)
       data.users = docs;
-      req.session.users = docs;
-      // console.log("Users List::data", data)
+      req.session.users = docs; // keep in session for reports
+      return res.render("dashboard", { data })
+    })
+  } else if (req.query.action === "view_user") {
+    //@route - /dashboard?action=Vie_users&id=1233466466
+    // @description - get a registered user
+    console.log("Requested user ID", req.query.id)
+    const { id } = req.query;
+    User.findOne({ _id: id, isDeleted: false }, (err, user) => {
+      if (err) {
+        req.session.message = "Oops! Server error";
+        return res.redirect("/dashboard")
+      }
+
+      if (!user) {
+        req.session.message = "User does not exist";
+        return res.redirect("/dashboard");
+      }
+      console.log("Viewin user::email", user.email)
+      data.member = user;
       return res.render("dashboard", { data })
     })
   } else if (req.query.action === "report") {
-    let reportData = req.session.users;
+    // let reportData = req.session.users;
+    // work on reportData
+    const userList = req.session.users;
+    // const jsonData = JSON.parse(JSON.stringify(reportData));
+    const jsonData = JSON.parse(reportData(userList));
+    // console.log("jsonData => ", jsonData)
 
-    const jsonData = JSON.parse(JSON.stringify(reportData));
     const path2file = "reports/master_" + Date.now() + "_report.csv";
     const ws = fs.createWriteStream(path2file);
 
     fastcsv
       .write(jsonData, { headers: true })
       .on("finish", function () {
-        // console.log("function ", e);
-        // data.result.message = 'Available for Download';
-        console.log("Write to master lis successfully!", ws.path);
-        // let filePath = path.resolve(ws.path).replace(/\\/g, '/');
-        // console.log('file Path : ', filePath);
 
+        console.log("Write to master lis successfully!", ws.path);
+        // convert the .csv to .xlsx
         convertapi.convert('xlsx', {
           File: ws.path
         }, 'csv').then(function (result) {
           console.log('url : ', result.file.url);
           data.download_url = result.file.url;
-          console.log('data wifth link', data)
           return res.render('dashboard', { data });
         }).catch(e => {
 
           data.message = 'Failed to generate report';
-          return res.render('admin', { data });
+          return res.render('dashboard', { data });
         });
 
       })
       .pipe(ws);
 
-  }
-  else {
-    console.log("::data", data)
+  } else if (req.query.action === "notifications") {
+
+    Notification.find({ isDeleted: false }, (err, notes) => {
+      if (err) {
+        data.message = "Server err";
+        return res.render("dashboard", { data })
+      }
+      data.notes = notes;
+      return res.render("dashboard", { data })
+    });
+
+  } else if (req.query.action === "notify") {
+
+    return res.render("dashboard", { data })
+  } else {
+    // No query strings
+    // @route - /dashboard
+    console.log("user", data.user.email)
     return res.render("dashboard", { data })
   }
-  // console.log("Users List", data.users)
-  // return res.render("dashboard", { data })
+
 })
 
 router.post("/:section/:id", (req, res) => {
@@ -89,7 +131,7 @@ router.post("/:section/:id", (req, res) => {
             return res.redirect("/dashboard")
           }
 
-          console.log("UpdUser", updUser)
+
           req.session.user = updUser;
           return res.redirect("/dashboard");
         })
@@ -105,7 +147,6 @@ router.post("/:section/:id", (req, res) => {
             return res.redirect("/dashboard")
           }
 
-          console.log("UpdUser", updUser.general)
           req.session.user = updUser;
           return res.redirect("/dashboard");
         })
@@ -150,32 +191,30 @@ router.post("/:section/:id", (req, res) => {
           if (err) {
             return res.redirect("/dashboard")
           }
-
-          console.log("UpdUser", updUser.personal)
           req.session.user = updUser;
           return res.redirect("/dashboard");
         })
       break;
     case "nok":
       const {
-        name,
-        address,
+        nok_name,
+        nok_address,
         nok_phone,
-        occupation,
-        relation,
-        email
+        nok_occupation,
+        nok_relation,
+        nok_email
 
       } = req.body;
       User.findOneAndUpdate(
         { _id: req.params.id, isDeleted: false },
         {
           nok: {
-            name,
-            address,
+            nok_name,
+            nok_address,
             nok_phone,
-            occupation,
-            relation,
-            email
+            nok_occupation,
+            nok_relation,
+            nok_email
 
           }
         },
@@ -183,8 +222,6 @@ router.post("/:section/:id", (req, res) => {
           if (err) {
             return res.redirect("/dashboard")
           }
-
-          console.log("UpdUser", updUser.nok)
           req.session.user = updUser;
           return res.redirect("/dashboard");
         })
@@ -208,8 +245,6 @@ router.post("/:section/:id", (req, res) => {
           if (err) {
             return res.redirect("/dashboard")
           }
-
-          console.log("UpdUser", updUser.nok)
           req.session.user = updUser;
           return res.redirect("/dashboard");
         })
@@ -243,8 +278,6 @@ router.post("/:section/:id", (req, res) => {
           if (err) {
             return res.redirect("/dashboard")
           }
-
-          console.log("UpdUser", updUser.church_info)
           req.session.user = updUser;
           return res.redirect("/dashboard");
         })

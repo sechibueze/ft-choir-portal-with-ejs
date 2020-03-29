@@ -1,77 +1,63 @@
-<!DOCTYPE html>
-
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Dashboard </title>
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <!-- Bootstrap CSS -->
-  <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"> --> -->
+<%- include("partials/header", { title: "Dashboard"}) -%>
 
 
-  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-  <!------ Include the above in your HEAD tag ---------->
+<!-- <p class="text" id="text"> This is a text </p> -->
+<div class="container-fluid display-table">
+  <div class="row display-table-row">
+    <div class="col-md-2 col-sm-1 hidden-xs display-table-cell v-align box" id="navigation">
 
-  <!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
-
-  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
-
-
-
-  <link rel="stylesheet" href="/css/accordion.css">
-  <link rel="stylesheet" href="/css/dashboard.css">
-  <link rel="stylesheet" href="/css/base-accordion.css">
-</head>
-
-<body class="home">
-  <!-- <p class="text" id="text"> This is a text </p> -->
-  <div class="container-fluid display-table">
-    <div class="row display-table-row">
-      <div class="col-md-2 col-sm-1 hidden-xs display-table-cell v-align box" id="navigation">
-
-        <div class="logo">
-          <a hef="home.html"><img src="http://jskrishna.com/work/merkury/images/logo.png" alt="merkery_logo"
-              class="hidden-xs hidden-sm">
-            <img src="http://jskrishna.com/work/merkury/images/circle-logo.png" alt="merkery_logo"
-              class="visible-xs visible-sm circle-logo">
-          </a>
-        </div>
-        <%- include("partials/side-menu") -%>
-
+      <div class="logo">
+        <a hef="home.html"><img src="/img/ftc-logo.png" style="border-radius: 25px; width: 40px; " alt="ftc logo"
+            class="hidden-xs hidden-sm">
+          <img src="/img/ftc-logo.png" alt="ftc logo" class="visible-xs visible-sm circle-logo"
+            style="border-radius: 5px;" />
+        </a>
       </div>
-      <div class="col-md-10 col-sm-11 display-table-cell v-align">
-        <!--<button type="button" class="slide-toggle">Slide Toggle</button> -->
-        <%- include("partials/top-navbar") -%>
-        <div class="user-dashboard">
-          <h1>Hello, <%= data.user.firstname %></h1>
-          <!-- <% if (data.user.isAdmin) {%>
-          <%- include("partials/report") -%>
-          <%}%> -->
+      <%- include("partials/side-menu") -%>
 
-          <div class="row">
-            <h1 style="background-color: yellow;"> profile </h1>
-            <% if( data.query.action === 'profile'){%>
-            <%- include("partials/profile")-%>
-            <%}%>
+    </div>
+    <div class="col-md-10 col-sm-11 display-table-cell v-align">
+      <!--<button type="button" class="slide-toggle">Slide Toggle</button> -->
+      <%- include("partials/top-navbar") -%>
+      <div class="user-dashboard">
+        <h1>Hello, <%= data.user.firstname %></h1>
+        <% if (data.message) {%>
+        <p> <%= data.message  %> </p>
+        <%}%>
+
+        <div class="row">
+       
+          <% if( data.query.action === 'profile'){%>
+        <%- include("partials/profile")-%>
+        <%}%>
 
           <% if( data.query.action === 'edit-profile'){%>
-            <%- include("partials/edit_profile")-%>
-            <%}%>
+        <%- include("partials/edit_profile")-%>
+        <%}%>
          
           <% if( data.query.action === 'update-profile-image'){%>
-            <%- include("partials/update-profile-image")-%>
-            <%}%>
+        <%- include("partials/update-profile-image")-%>
+        <%}%>
 
           <% if( data.query.action === 'users'){%>
-            <%- include("partials/report") -%>
-            <%- include("partials/users")-%>
-            <%}%>
+        <%- include("partials/report") -%>
+        <%- include("partials/users")-%>
+        <%}%>
+          <!-- TODO -->
+          <!-- Add supplort for notify and show notifications -->
+          <% if( data.query.action === "notifications"){%>
+
+        <%- include("partials/notification")-%>
+        <%}%>
+
+          <% if( data.query.action === "notify"){%>
+
+        <%- include("partials/notify")-%>
+        <%}%>
+
+          <% if( data.query.action === 'view_user'){%>
+        <%- include("partials/member_profile")-%>
+        <%}%>
           </div>
         </div>
       </div>
@@ -79,40 +65,5 @@
 
   </div>
 
-  <!-- Modal -->
-  <div id="add_project" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header login-header">
-          <button type="button" class="close" data-dismiss="modal">×</button>
-          <h4 class="modal-title">Add Project</h4>
-        </div>
-        <div class="modal-body">
-          <input type="text" placeholder="Project Title" name="name">
-          <input type="text" placeholder="Post of Post" name="mail">
-          <input type="text" placeholder="Author" name="passsword">
-          <textarea placeholder="Desicrption"></textarea>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="cancel" data-dismiss="modal">Close</button>
-          <button type="button" class="add-project" data-dismiss="modal">Save</button>
-        </div>
-      </div>
-
-    </div>
-  </div>
-  <script src="/js/dashboard.js"></script>
-  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-    crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-    crossorigin="anonymous"></script>
-</body>
-
-</html>
+  
+<%- include("partials/footer") -%>

@@ -6,10 +6,12 @@ const Token = require('./token');
 
 const UserSchema = mongoose.Schema({
   unit_id: {
-    type: String
+    type: String,
+    default: ""
   },
   title: {
     type: String,
+    default: "Mr",
     enum: ['Mr', 'Mrs', 'Dcn', 'Pst']
   },
   firstname: {
@@ -85,24 +87,29 @@ const UserSchema = mongoose.Schema({
     },
     marital_status: {
       type: String,
-
+      default: "Single",
       enum: ['Single', 'Engaged', 'Married']
     },
     work_status: {
       type: String,
+      default: "Unemployed",
       enum: ['Employed', 'Self employed', 'Unemployed']
     },
     profession: {
-      type: String
+      type: String,
+      default: ""
     },
     employer_name: {
-      type: String
+      type: String,
+      default: ""
     },
     employer_address: {
-      type: String
+      type: String,
+      default: ""
     },
     state_origin: {
-      type: String
+      type: String,
+      default: ""
     },
     nationality: {
       type: String,
@@ -110,24 +117,29 @@ const UserSchema = mongoose.Schema({
     }
   },
   nok: {
-    name: {
+    nok_name: {
       type: String,
       default: ""
     },
-    address: {
-      type: String
+    nok_address: {
+      type: String,
+      default: ""
     },
     nok_phone: {
-      type: String
+      type: String,
+      default: ""
     },
-    occupation: {
-      type: String
+    nok_occupation: {
+      type: String,
+      default: ""
     },
-    relation: {
-      type: String
+    nok_relation: {
+      type: String,
+      default: ""
     },
-    email: {
-      type: String
+    nok_email: {
+      type: String,
+      default: ""
     }
   },
   choir_roles: {
@@ -153,25 +165,32 @@ const UserSchema = mongoose.Schema({
       enum: ['Home provider', 'Member', 'District coordinator']
     },
     new_birth_year: {
-      type: String
+      type: String,
+      default: ""
     },
     holy_spirit_year: {
-      type: String
+      type: String,
+      default: ""
     },
     lfc_joined_year: {
-      type: String
+      type: String,
+      default: ""
     },
     ordination_year: {
-      type: String
+      type: String,
+      default: ""
     },
     province: {
-      type: String
+      type: String,
+      default: ""
     },
     district: {
-      type: String
+      type: String,
+      default: ""
     },
     zone: {
-      type: String
+      type: String,
+      default: ""
     }
   }
 

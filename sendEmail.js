@@ -1,10 +1,10 @@
 const nodemailer = require("nodemailer");
 const user = {
-  email: 'chelson4real@gmail.com'
+  email: ''
 }
 const option = {
-  email: 'sechibueze@gmail.com',
-  password: '@Christ4me',
+  email: '',
+  password: '',
   message: '',
   subject: ''
 }

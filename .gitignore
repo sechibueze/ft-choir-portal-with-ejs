@@ -3,4 +3,5 @@ NOTE.MD
 .env
 README.md
 test.js
-sendMail.js
+sendEmail.js
+helpers

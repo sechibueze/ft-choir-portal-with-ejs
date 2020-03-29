@@ -2,20 +2,24 @@ const express = require("express");
 const { check, validationResult } = require("express-validator");
 const router = express.Router();
 const User = require("../model/user");
-
+/*
+* @route GET /signup
+*@descrription render signup form
+* @access public
+*/
 router.get('/', (req, res) => {
   const data = {
-    title: "Signup",
-    status: "",
-    message: "",
-    errors: "",
-    payload: {}
+    message: req.session.message || ""
   }
   return res.render('signup', { data });
 });
 
 
-// Signup Validation
+/*
+* @route POST /signup
+* @descrription process user signup request
+* @access public
+*/
 const signupValidations = [
   check("firstname", "Please Enter your Firstname")
     .not()
@@ -33,17 +37,12 @@ router.post("/", signupValidations, async (req, res) => {
 
   if (!errors.isEmpty()) {
     const data = {
-      title: "Signup",
-      status: false,
-      message: "",
       error: "Please attend to the following errors",
-      errors: errors.array(),
-      payload: {}
+      errors: errors.array()
     }
-    console.log("error", data.errors)
     return res.render('signup', { data });
   }
-  console.log('Passed signup validations')
+
   const {
     firstname,
     lastname,
@@ -59,8 +58,7 @@ router.post("/", signupValidations, async (req, res) => {
 
     if (user) {
       const data = {
-        status: false,
-        error: "User Already Exists"
+        message: "User Already Exists"
       }
       return res.render("signup", { data })
 
@@ -73,27 +71,19 @@ router.post("/", signupValidations, async (req, res) => {
       password
     });
 
-    // Password will be hashed before save() if it wasnt modified
+    // Password will be hashed before save() if it was not modified
     const user_ = await user.save();
-    // console.log('Saved use to DB', user_)
+
     const data = {
-      status: true,
-      message: 'User signup successfully, Login',
+      message: 'User signup successfully, please login',
     }
-    return res.render("signup", { data })
-    // return res.json({
-    //   status: true,
-    //   message: 'User signup successfully',
-    //   data: user_
-    // })
-    // sendEmail(user_, req, res);
+    return res.render("signup", { data });
 
   } catch (err) {
-    console.log(err.message);
-    res.status(500).json({
-      status: false,
-      error: 'Could not signup'
-    });;
+    const data = {
+      message: 'Oop! server error',
+    }
+    return res.render("signup", { data });
   }
 }
 );

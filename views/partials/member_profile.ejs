@@ -10,7 +10,7 @@
         </div>
         <div class="col-md-2">
           <img style="width: 30px; height: 30px; border-radius: 50%; text-align: center; margin: 15px;"
-            src="<%= data.user.profileImage %>" alt="<%= data.user.firstname %>-Profile Image" />
+            src="<%= data.member.profileImage %>" alt="<%= data.member.firstname %>-Profile Image" />
         </div>
         <div class="col-md-5">
           <a href="/dashboard?action=update-profile-image&id=<%= data.user._id %>"> Edit Image </a>
@@ -19,24 +19,24 @@
       <div class="row">
         <div class="col-md-3">
           <strong>Unit ID </strong>
-          <p> <%= data.user.unit_id || "" %></p>
+          <p> <%= data.member.unit_id || "" %></p>
         </div>
         <div class="col-md-3">
           <strong>Title </strong>
-          <p> <%= data.user.title || "" %></p>
+          <p> <%= data.member.title || "" %></p>
         </div>
         <div class="col-md-3">
           <strong>Firstname </strong>
-          <p> <%= data.user.firstname %></p>
+          <p> <%= data.member.firstname %></p>
         </div>
         <div class="col-md-3">
           <strong>Lastname </strong>
-          <p> <%= data.user.lastname %></p>
+          <p> <%= data.member.lastname %></p>
         </div>
 
         <!-- <div class="col-md-3">
           <strong>Firstname </strong>
-          <p> <%= data.user.firstname %></p>
+          <p> <%= data.member.firstname %></p>
         </div> -->
       </div>
     </div>
@@ -55,19 +55,19 @@
       <div class="row">
         <div class="col-md-3">
           <strong>Group </strong>
-          <p> <%= data.user.general.group || "" %></p>
+          <p> <%= data.member.general.group || "" %></p>
         </div>
         <div class="col-md-3">
           <strong>Vocal Part </strong>
-          <p> <%= data.user.general.vocal_part || "" %></p>
+          <p> <%= data.member.general.vocal_part || "" %></p>
         </div>
         <div class="col-md-3">
           <strong>Rehearsal Location </strong>
-          <p> <%= data.user.general.rehearsal_location || "" %></p>
+          <p> <%= data.member.general.rehearsal_location || "" %></p>
         </div>
         <div class="col-md-3">
           <strong>Gender </strong>
-          <p> <%= data.user.general.gender || "" %></p>
+          <p> <%= data.member.general.gender || "" %></p>
         </div>
 
       </div>
@@ -86,76 +86,76 @@
       <div class="row">
         <div class="col-md-3">
           <strong>Phone number </strong>
-          <p> <%= data.user.personal.phone || "" %></p>
+          <p> <%= data.member.personal.phone || "" %></p>
         </div>
         <div class="col-md-3">
           <strong>Whatsapp Phone </strong>
-          <p> <%= data.user.personal.whatsapp_phone || "" %></p>
+          <p> <%= data.member.personal.whatsapp_phone || "" %></p>
         </div>
         <div class="col-md-3">
           <strong>Contact Address </strong>
-          <p> <%= data.user.personal.contact_address || "" %></p>
+          <p> <%= data.member.personal.contact_address || "" %></p>
         </div>
         <div class="col-md-3">
           <strong>PHA </strong>
-          <p> <%= data.user.personal.pha || "" %></p>
+          <p> <%= data.member.personal.pha || "" %></p>
         </div>
       </div>
 
       <div class="row">
         <div class="col-md-3">
           <strong>Date of Birth </strong>
-          <p> <%= data.user.personal.dob || "" %></p>
+          <p> <%= data.member.personal.dob || "" %></p>
         </div>
         <div class="col-md-3">
           <strong>Wedding Date </strong>
-          <p> <%= data.user.personal.wed_data || "" %></p>
+          <p> <%= data.member.personal.wed_data || "" %></p>
         </div>
         <div class="col-md-3">
           <strong>Marital status </strong>
-          <p> <%= data.user.personal.marital_status || "" %></p>
+          <p> <%= data.member.personal.marital_status || "" %></p>
         </div>
         <div class="col-md-3">
           <strong>Work Status </strong>
-          <p> <%= data.user.personal.work_status || "" %></p>
+          <p> <%= data.member.personal.work_status || "" %></p>
         </div>
       </div>
 
       <div class="row">
         <div class="col-md-3">
           <strong>Profession </strong>
-          <p> <%= data.user.personal.profession || "" %></p>
+          <p> <%= data.member.personal.profession || "" %></p>
         </div>
         <div class="col-md-3">
           <strong>Employers name </strong>
-          <p> <%= data.user.personal.employer_name || "" %></p>
+          <p> <%= data.member.personal.employer_name || "" %></p>
         </div>
         <div class="col-md-3">
           <strong>Employers address </strong>
-          <p> <%= data.user.personal.employer_address || "" %></p>
+          <p> <%= data.member.personal.employer_address || "" %></p>
         </div>
         <div class="col-md-3">
           <strong> State of origin </strong>
-          <p> <%= data.user.personal.state_origin || "" %></p>
+          <p> <%= data.member.personal.state_origin || "" %></p>
         </div>
       </div>
 
       <div class="row">
         <div class="col-md-3">
           <strong>Nationality </strong>
-          <p> <%= data.user.personal.nationality || "" %></p>
+          <p> <%= data.member.personal.nationality || "" %></p>
         </div>
         <!-- <div class="col-md-3">
           <strong>Whatsapp Phone </strong>
-          <p> <%= data.user.general.vocal_part || "" %></p>
+          <p> <%= data.member.general.vocal_part || "" %></p>
         </div>
         <div class="col-md-3">
           <strong>Contact Address </strong>
-          <p> <%= data.user.general.rehearsal_location || "" %></p>
+          <p> <%= data.member.general.rehearsal_location || "" %></p>
         </div>
         <div class="col-md-3">
           <strong>PHA </strong>
-          <p> <%= data.user.general.gender || "" %></p>
+          <p> <%= data.member.general.gender || "" %></p>
         </div>
        -->
       </div>
@@ -173,30 +173,30 @@
       <div class="row">
         <div class="col-md-3">
           <strong>Name </strong>
-          <p> <%= data.user.nok.nok_name || "" %></p>
+          <p> <%= data.member.nok.nok_name || "" %></p>
         </div>
         <div class="col-md-3">
           <strong>Address </strong>
-          <p> <%= data.user.nok.nok_address || "" %></p>
+          <p> <%= data.member.nok.nok_address || "" %></p>
         </div>
         <div class="col-md-3">
           <strong>Phone </strong>
-          <p> <%= data.user.nok.nok_phone || "" %></p>
+          <p> <%= data.member.nok.nok_phone || "" %></p>
         </div>
         <div class="col-md-3">
           <strong>Occupation </strong>
-          <p> <%= data.user.nok.nok_occupation || "" %></p>
+          <p> <%= data.member.nok.nok_occupation || "" %></p>
         </div>
       </div>
 
       <div class="row">
         <div class="col-md-3">
           <strong>Relation </strong>
-          <p> <%= data.user.nok.nok_relation || "" %></p>
+          <p> <%= data.member.nok.nok_relation || "" %></p>
         </div>
         <div class="col-md-3">
           <strong>Email </strong>
-          <p> <%= data.user.nok.nok_email || "" %></p>
+          <p> <%= data.member.nok.nok_email || "" %></p>
         </div>
 
       </div>
@@ -217,16 +217,17 @@
       <div class="row">
         <div class="col-md-3">
           <strong>Membership status </strong>
-          <p> <%= data.user.choir_roles.membership_status || "" %></p>
+          <p> <%= data.member.choir_roles.membership_status || "" %></p>
         </div>
         <div class="col-md-3">
           <strong>Leadership status </strong>
-          <p> <%= data.user.choir_roles.leadership_status || "" %></p>
+          <p> <%= data.member.choir_roles.leadership_status || "" %></p>
         </div>
         <div class="col-md-3">
           <strong>Sub group </strong>
-          <p> <%= data.user.choir_roles.sub_group || "" %></p>
+          <p> <%= data.member.choir_roles.sub_group || "" %></p>
         </div>
+
 
       </div>
     </div>
@@ -243,51 +244,42 @@
       <div class="row">
         <div class="col-md-3">
           <strong>WSF status </strong>
-          <p> <%= data.user.church_info.wsf_status || "" %></p>
+          <p> <%= data.member.church_info.wsf_status || "" %></p>
         </div>
         <div class="col-md-3">
           <strong>New birth year </strong>
-          <p> <%= data.user.church_info.new_birth_year || "" %></p>
+          <p> <%= data.member.church_info.new_birth_year || "" %></p>
         </div>
         <div class="col-md-3">
           <strong>Holy spirit year </strong>
-          <p> <%= data.user.church_info.holy_spirit_year || "" %></p>
+          <p> <%= data.member.church_info.holy_spirit_year || "" %></p>
         </div>
         <div class="col-md-3">
           <strong>LFC joined year </strong>
-          <p> <%= data.user.church_info.lfc_joined_year || "" %></p>
+          <p> <%= data.member.church_info.lfc_joined_year || "" %></p>
         </div>
 
       </div>
       <div class="row">
         <div class="col-md-3">
           <strong>Ordination year </strong>
-          <p> <%= data.user.church_info.ordination_year || "" %></p>
+          <p> <%= data.member.church_info.ordination_year || "" %></p>
         </div>
         <div class="col-md-3">
           <strong>Province </strong>
-          <p> <%= data.user.church_info.province || "" %></p>
+          <p> <%= data.member.church_info.province || "" %></p>
         </div>
         <div class="col-md-3">
           <strong>District </strong>
-          <p> <%= data.user.church_info.district || "" %></p>
+          <p> <%= data.member.church_info.district || "" %></p>
         </div>
         <div class="col-md-3">
           <strong>Zone</strong>
-          <p> <%= data.user.church_info.zone || "" %></p>
+          <p> <%= data.member.church_info.zone || "" %></p>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<div class="container mb-4">
-  <div class="row">
-    <div class="col-md-3"></div>
-    <div class="col-md-6">
-      <a class="btn btn-secondary btn-lg mb-4" href="/dashboard?id=<%= data.user._id %>&action=edit-profile"> Edit
-        Profile</a>
-    </div>
-    <div class="col-md-3"></div>
-  </div>
-</div>
+<!-- <a class="btn btn-secondary" href="/dashboard?id=<%= data.member._id %>&action=edit-profile"> Edit Profile</a> -->

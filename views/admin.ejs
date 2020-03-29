@@ -1,26 +1,33 @@
-<!DOCTYPE html>
+<%- include("partials/header", { title: "Super Admin"}) -%>
 
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Admin </title>
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="">
-</head>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+      <form method="POST" action="/admin">
+        <h2>Assign Admin Priviledge</h2>
+        <p>Be sure before you do this!!</p>
+        <% if(data.message) {%>
+        <%= data.message %>
+        <%} %>
+        <div class="form-group">
+          <label for="">Email</label>
+          <input name="email" placeholder="Email of user" class="form-control" required />
+        </div>
 
-<body>
-  <form method="POST" action="/admin">
-    <% if(data.message) {%>
-    <%= data.message %>
-    <%} %>
-    <input name="email" placeholder="Email of user" required />
-    <br />
+        <button type="submit" class="btn btn-primary mb-4">Make Admin</button>
 
-    <button type="submit" class="btn btn-primary">Make Admin</button>
-  </form>
+        <a href="/dashboard" class="btn btn-info mt-4">Dashboard</a>
+      </form>
+    </div>
+    <div class="col-md-3">
+      <ul>
+        <li><a href="/admin?action=raw_delete_users">Delete Users (Raw) </a></li>
+      </ul>
+    </div>
+  </div>
+</div>
 
-  <script src="" async defer></script>
-</body>
 
-</html>
+
+<%- include("partials/footer") -%>

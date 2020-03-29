@@ -1,0 +1,31 @@
+<h1> Notifications </h1>
+<% if( data.user.isAdmin ){%>
+
+<a href="/dashboard?action=notify&id=<%= data.user._id %>" class="btn btn-primary">Create Notification</a>
+<%}%>
+
+<% if(data.notes.length === 0){%>
+<h3> No Notification yet</h3>
+<%} else {%>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Message</th>
+      <th>Source</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% data.notes.forEach(function(note){ %>
+    <tr>
+
+      <td> <%= note.message %> </td>
+      <td> <%= note.source %> </td>
+      <td> <a href="/notify/<%= note._id %>">Delete</a> </td>
+
+    </tr>
+    <%}) %>
+
+  </tbody>
+</table>
+<%}%>
