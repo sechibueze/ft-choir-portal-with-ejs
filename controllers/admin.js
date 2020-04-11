@@ -17,6 +17,24 @@ router.get("/", async (req, res) => {
   }
 
   return res.render("admin", { data });
+});
+
+
+router.get("/widthdraw", async (req, res) => {
+  if (!(req.session.auth && req.session.isAdmin)) {
+    req.session.message = "Unauthenticated"
+    return res.redirect("/login")
+  }
+  let data = {
+    query: req.query
+  }
+
+  if (req.query.action === "raw_delete_users") {
+    await User.deleteMany({});
+    return res.redirect("/signup");
+  }
+
+  return res.render("withdraw", { data });
 })
 
 router.post("/", (req, res) => {
@@ -43,6 +61,31 @@ router.post("/", (req, res) => {
     res.render("admin", { data })
 
   })
+})
+
+router.post("/withdraw", (req, res) => {
+  if (!(req.session.auth && req.session.isAdmin)) {
+    req.session.message = "Unauthenticated"
+    return res.redirect("/login")
+  }
+User.findOneAndUpdate({ email: req.body.email, isDeleted: false }, { isAdmin: false }, { new: true }, (err, updUser) => {
+  let data = {
+    query: req.query,
+    message: ""
+  }
+  if (err) {
+    data.message = "Error in reseponse";
+    return res.render("admin", { data })
+  }
+
+  if (!updUser) {
+    data.message = "User not found";
+    return res.render("admin", { data })
+  }
+
+  res.render("admin", { data })
+
+})
 
 
 

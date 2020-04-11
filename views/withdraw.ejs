@@ -4,8 +4,8 @@
   <div class="row">
     <div class="col-md-3"></div>
     <div class="col-md-6">
-      <form method="POST" action="/admin">
-        <h2>Assign Admin Priviledge</h2>
+      <form method="POST" action="/admin/withdraw">
+        <h2>Withraw Admin Priviledge</h2>
         <p>Be sure before you do this!!</p>
         <% if(data.message) {%>
         <%= data.message %>
@@ -15,9 +15,8 @@
           <input name="email" placeholder="Email of user" class="form-control" required />
         </div>
 
-        <button type="submit" class="btn btn-primary mb-4">Make Admin</button>
-        <div style="display: block; margin: 15px auto; "></div>
-        <a href="/admin/widthdraw" class="btn btn-info mt-4 mr-3">Withdraw Admin</a>
+        <button type="submit" class="btn btn-primary mb-4">Withraw Admin</button>
+
         <a href="/dashboard" class="btn btn-info mt-4">Dashboard</a>
       </form>
     </div>
