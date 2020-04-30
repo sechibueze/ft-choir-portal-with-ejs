@@ -1,3 +1,295 @@
+<% let states = [
+  "Abia",
+  "Adamawa",
+  "Akwa Ibom",
+  "Anambra",
+  "Bauchi",
+  "Bayelsa",
+  "Benue",
+  "Borno",
+  "Cross River",
+  "Delta",
+  "Ebonyi",
+  "Edo",
+  "Ekiti",
+  "Enugu",
+  "FCT - Abuja",
+  "Gombe",
+  "Imo",
+  "Jigawa",
+  "Kaduna",
+  "Kano",
+  "Katsina",
+  "Kebbi",
+  "Kogi",
+  "Kwara",
+  "Lagos",
+  "Nasarawa",
+  "Niger",
+  "Ogun",
+  "Ondo",
+  "Osun",
+  "Oyo",
+  "Plateau",
+  "Rivers",
+  "Sokoto",
+  "Taraba",
+  "Yobe",
+  "Zamfara"
+] %>
+
+<% const countryList = [
+	"Afghanistan",
+	"Albania",
+	"Algeria",
+	"American Samoa",
+	"Andorra",
+	"Angola",
+	"Anguilla",
+	"Antarctica",
+	"Antigua and Barbuda",
+	"Argentina",
+	"Armenia",
+	"Aruba",
+	"Australia",
+	"Austria",
+	"Azerbaijan",
+	"Bahamas (the)",
+	"Bahrain",
+	"Bangladesh",
+	"Barbados",
+	"Belarus",
+	"Belgium",
+	"Belize",
+	"Benin",
+	"Bermuda",
+	"Bhutan",
+	"Bolivia (Plurinational State of)",
+	"Bonaire, Sint Eustatius and Saba",
+	"Bosnia and Herzegovina",
+	"Botswana",
+	"Bouvet Island",
+	"Brazil",
+	"British Indian Ocean Territory (the)",
+	"Brunei Darussalam",
+	"Bulgaria",
+	"Burkina Faso",
+	"Burundi",
+	"Cabo Verde",
+	"Cambodia",
+	"Cameroon",
+	"Canada",
+	"Cayman Islands (the)",
+	"Central African Republic (the)",
+	"Chad",
+	"Chile",
+	"China",
+	"Christmas Island",
+	"Cocos (Keeling) Islands (the)",
+	"Colombia",
+	"Comoros (the)",
+	"Congo (the Democratic Republic of the)",
+	"Congo (the)",
+	"Cook Islands (the)",
+	"Costa Rica",
+	"Croatia",
+	"Cuba",
+	"Curaçao",
+	"Cyprus",
+	"Czechia",
+	"Côte d'Ivoire",
+	"Denmark",
+	"Djibouti",
+	"Dominica",
+	"Dominican Republic (the)",
+	"Ecuador",
+	"Egypt",
+	"El Salvador",
+	"Equatorial Guinea",
+	"Eritrea",
+	"Estonia",
+	"Eswatini",
+	"Ethiopia",
+	"Falkland Islands (the) [Malvinas]",
+	"Faroe Islands (the)",
+	"Fiji",
+	"Finland",
+	"France",
+	"French Guiana",
+	"French Polynesia",
+	"French Southern Territories (the)",
+	"Gabon",
+	"Gambia (the)",
+	"Georgia",
+	"Germany",
+	"Ghana",
+	"Gibraltar",
+	"Greece",
+	"Greenland",
+	"Grenada",
+	"Guadeloupe",
+	"Guam",
+	"Guatemala",
+	"Guernsey",
+	"Guinea",
+	"Guinea-Bissau",
+	"Guyana",
+	"Haiti",
+	"Heard Island and McDonald Islands",
+	"Holy See (the)",
+	"Honduras",
+	"Hong Kong",
+	"Hungary",
+	"Iceland",
+	"India",
+	"Indonesia",
+	"Iran (Islamic Republic of)",
+	"Iraq",
+	"Ireland",
+	"Isle of Man",
+	"Israel",
+	"Italy",
+	"Jamaica",
+	"Japan",
+	"Jersey",
+	"Jordan",
+	"Kazakhstan",
+	"Kenya",
+	"Kiribati",
+	"Korea (the Democratic People's Republic of)",
+	"Korea (the Republic of)",
+	"Kuwait",
+	"Kyrgyzstan",
+	"Lao People's Democratic Republic (the)",
+	"Latvia",
+	"Lebanon",
+	"Lesotho",
+	"Liberia",
+	"Libya",
+	"Liechtenstein",
+	"Lithuania",
+	"Luxembourg",
+	"Macao",
+	"Madagascar",
+	"Malawi",
+	"Malaysia",
+	"Maldives",
+	"Mali",
+	"Malta",
+	"Marshall Islands (the)",
+	"Martinique",
+	"Mauritania",
+	"Mauritius",
+	"Mayotte",
+	"Mexico",
+	"Micronesia (Federated States of)",
+	"Moldova (the Republic of)",
+	"Monaco",
+	"Mongolia",
+	"Montenegro",
+	"Montserrat",
+	"Morocco",
+	"Mozambique",
+	"Myanmar",
+	"Namibia",
+	"Nauru",
+	"Nepal",
+	"Netherlands (the)",
+	"New Caledonia",
+	"New Zealand",
+	"Nicaragua",
+	"Niger (the)",
+	"Nigeria",
+	"Niue",
+	"Norfolk Island",
+	"Northern Mariana Islands (the)",
+	"Norway",
+	"Oman",
+	"Pakistan",
+	"Palau",
+	"Palestine, State of",
+	"Panama",
+	"Papua New Guinea",
+	"Paraguay",
+	"Peru",
+	"Philippines (the)",
+	"Pitcairn",
+	"Poland",
+	"Portugal",
+	"Puerto Rico",
+	"Qatar",
+	"Republic of North Macedonia",
+	"Romania",
+	"Russian Federation (the)",
+	"Rwanda",
+	"Réunion",
+	"Saint Barthélemy",
+	"Saint Helena, Ascension and Tristan da Cunha",
+	"Saint Kitts and Nevis",
+	"Saint Lucia",
+	"Saint Martin (French part)",
+	"Saint Pierre and Miquelon",
+	"Saint Vincent and the Grenadines",
+	"Samoa",
+	"San Marino",
+	"Sao Tome and Principe",
+	"Saudi Arabia",
+	"Senegal",
+	"Serbia",
+	"Seychelles",
+	"Sierra Leone",
+	"Singapore",
+	"Sint Maarten (Dutch part)",
+	"Slovakia",
+	"Slovenia",
+	"Solomon Islands",
+	"Somalia",
+	"South Africa",
+	"South Georgia and the South Sandwich Islands",
+	"South Sudan",
+	"Spain",
+	"Sri Lanka",
+	"Sudan (the)",
+	"Suriname",
+	"Svalbard and Jan Mayen",
+	"Sweden",
+	"Switzerland",
+	"Syrian Arab Republic",
+	"Taiwan (Province of China)",
+	"Tajikistan",
+	"Tanzania, United Republic of",
+	"Thailand",
+	"Timor-Leste",
+	"Togo",
+	"Tokelau",
+	"Tonga",
+	"Trinidad and Tobago",
+	"Tunisia",
+	"Turkey",
+	"Turkmenistan",
+	"Turks and Caicos Islands (the)",
+	"Tuvalu",
+	"Uganda",
+	"Ukraine",
+	"United Arab Emirates (the)",
+	"United Kingdom of Great Britain and Northern Ireland (the)",
+	"United States Minor Outlying Islands (the)",
+	"United States of America (the)",
+	"Uruguay",
+	"Uzbekistan",
+	"Vanuatu",
+	"Venezuela (Bolivarian Republic of)",
+	"Viet Nam",
+	"Virgin Islands (British)",
+	"Virgin Islands (U.S.)",
+	"Wallis and Futuna",
+	"Western Sahara",
+	"Yemen",
+	"Zambia",
+	"Zimbabwe",
+	"Åland Islands"
+]
+%>
 <section id="our-solutions" class="row">
   <h2 class="section-heading" style="text-align: center;">Edit by section</h2>
   <div class="container">
@@ -51,7 +343,12 @@
               <form method="POST" action="/dashboard/general/<%= data.user._id %>" name="general">
                 <div class="form-group">
                   <label for="group">Group</label>
-                  <input type="text" name="group" class="form-control" placeholder="Group" required />
+                  <select name='group' class="form-control" required>
+                    <% for(i = 1; i < 52; i++){%>
+                      <option value="Group <%= i %>"> Group <%= i %> </option>
+                    <%} %>
+                  </select>
+                  
                 </div>
                 <div class="form-group">
                   <label for="vocal_part">Select vocal part</label>
@@ -120,20 +417,26 @@
 
                 <div class="form-group">
                   <label for="dob">Date of Birth</label>
-                  <input type="text" name="dob" class="form-control" placeholder="Date of birth" required />
+                  <input type="date" name="dob" class="form-control" placeholder="Date of birth" required />
                 </div>
 
                 <div class="form-group">
                   <label for="wed_date"> Wedding date</label>
-                  <input type="text" name="wed_date" class="form-control" placeholder="Wedding Date" required />
+                  <input type="date" name="wed_date" class="form-control" placeholder="Wedding Date" required />
                 </div>
 
                 <div class="form-group">
                   <label for="marital_status">Marital status</label>
                   <select name="marital_status" class="form-control" required>
                     <option value="Single"> Single</option>
+                    <option value="In a relationship"> In a relationship </option>
                     <option value="Engaged"> Engaged</option>
                     <option value="Married"> Married</option>
+                    <option value="Separated"> Separated</option>
+                    <option value="Widow"> Widow</option>
+                    <option value="Divorced"> Divorced</option>
+                   
+
                   </select>
                 </div>
 
@@ -166,19 +469,19 @@
                 <div class="form-group">
                   <label for="state_origin"> State of origin</label>
                   <select name="state_origin" class="form-control" required>
-                    <option value="Abia State"> Abia State </option>
-                    <option value="Ogun State"> Ogun State</option>
-                    <option value="Lagos State"> Lagos State</option>
-                    <option value="Osun State"> Osun State</option>
+                  
+                  <% states.forEach(state => {%>
+                      <option value="<%= state %>"> <%= state %> </option>
+                  <%})%>
                   </select>
                 </div>
 
                 <div class="form-group">
                   <label for="nationality"> Nationality</label>
                   <select name="nationality" class="form-control" required>
-                    <option value="Nigerian"> Nigeria </option>
-                    <option value="Ghanian"> Ghana</option>
-                    <option value="Togolese"> Togo</option>
+                    <% countryList.forEach(country => {%>
+                      <option value="<%= country %>"> <%= country %> </option>
+                  <%})%>
                   </select>
                 </div>
 
@@ -226,6 +529,12 @@
                     <option value="husband"> Husband</option>
                     <option value="Son"> Son</option>
                     <option value="Daughter"> Daughter</option>
+                    <option value="Spouse"> Spouse</option>
+                    <option value="Parent"> Parent</option>
+                    <option value="Sibling"> Sibling</option>
+                    <option value="Relative"> Mentor</option>
+                    <option value="Protege"> Protege</option>
+                    
                   </select>
                 </div>
 
@@ -246,7 +555,7 @@
                 <div class="form-group">
                   <label for="membership_status">Membership status</label>
                   <select name="membership_status" class="form-control" required>
-                    <option value="Member"> Member</option>
+                    <option value="Member/Chorister"> Member/Chorister</option>
                     <option value="Ordained worker"> Oradained Worker</option>
                     <option value="Pastorate"> Pastorate</option>
                   </select>
@@ -256,7 +565,21 @@
                   <label for="leadership_status">Leadership status</label>
                   <select name="leadership_status" class="form-control" required>
                     <option value="Choir master"> Choir master</option>
+                    <option value="Asst Choir master">Asst Choir master</option>
+                    <option value="Choir Secretary"> Choir Secretary</option>
+                    <option value="Asst Choir Secretary">Asst Choir Secretary</option>
+                    <option value="Rehearsal Coordinator"> Rehearsal Coordinator</option>
+                    <option value="Musician Head">Musician Head</option>
+                    <option value="Musician Rehearsal Coordinator"> Musician Rehearsal Coordinator</option>
+                    <option value="Music Team Leader"> Music Team Leader</option>
+                    <option value="Praise Team Leader"> Praise Team Leader</option>
                     <option value="Part head"> Part head </option>
+                    <option value="Part Head Rep"> Part Head Rep</option>
+                    <option value="Music teacher"> Music teacher</option>
+                    <option value="Group Leader"> Group leader</option>
+                    <option value="Group Secretary"> Group Secretary</option>
+                    <option value="Committe Chair"> Committe Chair</option>
+                    <option value="Others"> Others</option>   
                   </select>
                 </div>
 
@@ -265,7 +588,20 @@
                   <select name="sub_group" class="form-control" required>
                     <option value="Music team"> Music team</option>
                     <option value="Praise team"> Praise team</option>
+                    <option value="Medical team"> Medical team</option>
+                    <option value="Technical team"> Technical team</option>
+                    <option value="Royal Apparel team"> Royal Apparel team</option>
+                    <option value="Digital team"> Digital team</option>
                     <option value="Legal team"> Legal team</option>
+                    <option value="Protocol team"> Protocol team</option>
+                    <option value="Disciplinary team"> Disciplinary team</option>
+                    <option value="Uniform team"> Uniform team</option>
+                    <option value="Covenant Partners"> Covenant Partners</option>
+                    <option value="Welfare team"> Welfare team</option>
+                    <option value="Marriage Committee"> Marriage Committee</option>
+                    <option value="Prayer team"> Prayer team</option>
+                    <option value="Multimedia team"> Multimedia team</option>
+                    <option value="Other team"> Other team</option>        
                   </select>
                 </div>
 
@@ -286,31 +622,41 @@
                 <div class="form-group">
                   <label for="wsf_status">WSF status</label>
                   <select name="wsf_status" class="form-control" required>
+                    <option value="Chairman"> Chairman (Zonal Council) </option>
+                    <option value="Asst Chairman"> Asst Chairman( Zonal Council)</option>
+                    <option value="Secretary"> Secretary( Zonal Council)</option>
+                    <option value="Zonal Pastor"> Zonal Pastor</option>
+                    <option value="Provincial Pastor"> Provincial Pastor</option>
+                    <option value="Zonal Minister"> Zonal Minister</option>
+                    <option value="Asst Zonal Minister"> Asst Zonal Minister</option>
+                    <option value="District Pastor"> District Pastor</option>
+                    <option value="Cell Minister"> Cell Minister</option>
+                    <option value="Cell Secretary"> Cell Secretary</option>
+                    <option value="Asst Cell Minister">Asst Cell Minister</option>
                     <option value="Member"> Member</option>
-                    <option value="Home provider"> Home provider</option>
-                    <option value="District coordinator"> District coordinator</option>
+                   
                   </select>
                 </div>
                 <div class="form-group">
                   <label for="new_birth_year">Year of new birth</label>
-                  <input type="text" name="new_birth_year" class="form-control" placeholder="New Birth year" required />
+                  <input type="date" name="new_birth_year" class="form-control" placeholder="New Birth year" required />
                 </div>
 
                 <div class="form-group">
                   <label for="holy_ghost_year">Year of Holy Ghost Baptism</label>
-                  <input type="text" name="holy_spirit_year" class="form-control" placeholder="Holy ghost year"
+                  <input type="date" name="holy_spirit_year" class="form-control" placeholder="Holy ghost year"
                     required />
                 </div>
 
                 <div class="form-group">
                   <label for="lfc_joined_year">Year joined LFC</label>
-                  <input type="text" name="lfc_joined_year" class="form-control"
+                  <input type="date" name="lfc_joined_year" class="form-control"
                     placeholder="which year did you join LFC" required />
                 </div>
 
                 <div class="form-group">
                   <label for="ordination_year">Year of Ordination</label>
-                  <input type="text" name="ordination_year" class="form-control" placeholder="Year of Ordination"
+                  <input type="date" name="ordination_year" class="form-control" placeholder="Year of Ordination"
                     required />
                 </div>
 

@@ -11,8 +11,7 @@ const UserSchema = mongoose.Schema({
   },
   title: {
     type: String,
-    default: "Mr",
-    enum: ['Mr', 'Mrs', 'Dcn', 'Pst']
+    default: ""
   },
   firstname: {
     type: String,
@@ -49,18 +48,15 @@ const UserSchema = mongoose.Schema({
     },
     vocal_part: {
       type: String,
-      default: "Alto",
-      enum: ['Alto', 'Suprano', 'Tenor']
+      default: ""
     },
     rehearsal_location: {
       type: String,
-      default: "Iyana",
-      enum: ['Iyana', 'Isashi', 'Canaanland']
+      default: ""
     },
     gender: {
       type: String,
-      default: "Male",
-      enum: ['Male', 'Female']
+      default: ""
     }
   },
   personal: {
@@ -87,13 +83,11 @@ const UserSchema = mongoose.Schema({
     },
     marital_status: {
       type: String,
-      default: "Single",
-      enum: ['Single', 'Engaged', 'Married']
+      ddefault: ""
     },
     work_status: {
       type: String,
-      default: "Unemployed",
-      enum: ['Employed', 'Self employed', 'Unemployed']
+      default: ""
     },
     profession: {
       type: String,
@@ -145,24 +139,22 @@ const UserSchema = mongoose.Schema({
   choir_roles: {
     membership_status: {
       type: String,
-      default: "Member",
-      enum: ['Member', 'Ordained worker', 'Pastorate']
+      default: ""
     },
     leadership_status: {
       type: String,
-      enum: ['Choir master', 'Part head']
+      default: ""
     },
     sub_group: {
       type: String,
-      enum: ['Music team', 'Praise team', 'Legal team']
+      default: ""
     }
 
   },
   church_info: {
     wsf_status: {
       type: String,
-      default: "Member",
-      enum: ['Home provider', 'Member', 'District coordinator']
+      default: ""
     },
     new_birth_year: {
       type: String,
